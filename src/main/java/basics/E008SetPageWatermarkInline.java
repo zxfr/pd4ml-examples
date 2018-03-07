@@ -1,3 +1,4 @@
+package basics;
 import java.awt.Desktop;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -7,31 +8,29 @@ import java.io.IOException;
 import com.pd4ml.PD4ML;
 
 /**
- * Generates PDF from a simple HTML string. Defines page-specific headers and footers.
+ * Generates PDF from a simple HTML string. Defines page-specific watermarks.
  */
-public class E003SetPageHeaderFooter {
+public class E008SetPageWatermarkInline {
     public static void main( String[] args ) throws IOException {
 
     	String html = 
     			"<html>"
     			+ "<head>"
-    			+ "<title>Header/Footer example</title>"
+    			+ "<title>Watermarking example</title>"
     			+ "<style>BODY {font-family: Arial}</style>"
     			+ "</head>"
-    			+ "<body>First Page<pd4ml:page.break>Second Page";
+    			+ "<body>"
+    			+ "<pd4ml:watermark style=\"opacity: 30%; left: 20px; top: 0; scale: 900%; angle: 30deg; media: screen, print;\" scope=\"1\">"
+    			+ "<b>WATERMARK</b></pd4ml:watermark>"
+    			+ "<pd4ml:watermark style=\"opacity: 30%; left: 20px; top: 0; scale: 900%; angle: 30deg; media: screen, print;\" scope=\"2+\">"
+    			+ "<b style='color: tomato'>WATERMARK</b></pd4ml:watermark>"
+    			+ "First Page"
+    			+ "<pd4ml:page.break>"
+    			+ "Second Page";
+    	
     	
     	PD4ML pd4ml = new PD4ML(null);
 
-    	// define page header for the first page 
-    	pd4ml.setPageHeader("$[title]", 30, "1");
-    	// define page footer for the first page 
-    	pd4ml.setPageFooter("Total pages: $[total]", 30, "1");
-
-    	// define page header for the second page 
-    	pd4ml.setPageHeader("<b>$[title]</b> $[page]/$[total]", 30, "2+");
-    	// define page footer for the second page 
-    	pd4ml.setPageFooter("<div style='width: 100%; text-align: right'>Page: $[page]</div>", 30, "2+");
-    	
     	ByteArrayInputStream bais = new ByteArrayInputStream(html.getBytes());
     	pd4ml.readHTML(bais);
     	
