@@ -21,7 +21,7 @@ public class E005SetPageBackground {
     			+ "</head>"
     			+ "<body>First Page<pd4ml:page.break>Second Page";
     	
-    	PD4ML pd4ml = new PD4ML(null);
+    	PD4ML pd4ml = new PD4ML();
 
     	// define page header for the first page 
     	pd4ml.setPageBackground("<div style='width: 100%; height: 100%; background-color: rgb(228,255,228);'></div>", "1");

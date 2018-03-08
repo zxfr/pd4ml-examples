@@ -1,4 +1,4 @@
-package basics;
+package advanced;
 import java.awt.Desktop;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -9,11 +9,16 @@ import com.pd4ml.PD4ML;
 
 /**
  * Generates PDF from a simple HTML string. Page format, margins etc are default.
+ * After the resulting PDF is loaded to a viewer, a print dialog should pop up
  */
-public class E001GettingStarted {
+public class A001PopupPrintDialog {
     public static void main( String[] args ) throws IOException {
     	PD4ML pd4ml = new PD4ML();
     	
+		pd4ml.addDocumentActionHandler("printdialog", null);
+		// similarly:
+		// pd4ml.addDocumentActionHandler("OpenAction", "this.print(true);");
+		
     	String html = "TEST<pd4ml:page.break><b>Hello, World!</b>";
     	ByteArrayInputStream bais = new ByteArrayInputStream(html.getBytes());
     	// read and parse HTML
@@ -23,9 +28,6 @@ public class E001GettingStarted {
     	FileOutputStream fos = new FileOutputStream(pdf);
     	// render and write the result as PDF
     	pd4ml.writePDF(fos);
-    	// alternatively or additionally: 
-    	// pd4ml.writeRTF(rtfos, false);
-    	// BufferedImage[] images = pd4ml.renderAsImages();
     	
     	// open the just-generated PDF with a default PDF viewer
     	Desktop.getDesktop().open(pdf);

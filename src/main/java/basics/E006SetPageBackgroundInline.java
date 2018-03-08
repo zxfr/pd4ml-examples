@@ -31,7 +31,7 @@ public class E006SetPageBackgroundInline {
     			+ "<pd4ml:page.background style='width: 100%; height: 100%; background-color: rgb(255,228,228);'></pd4ml:page.background>"
     			+ "Second Page";
     	
-    	PD4ML pd4ml = new PD4ML(null);
+    	PD4ML pd4ml = new PD4ML();
 
     	ByteArrayInputStream bais = new ByteArrayInputStream(html.getBytes());
     	pd4ml.readHTML(bais);

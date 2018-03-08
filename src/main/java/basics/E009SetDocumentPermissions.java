@@ -16,7 +16,7 @@ public class E009SetDocumentPermissions {
     public static void main( String[] args ) throws IOException {
 
     	String html = "TEST<pd4ml:page.break><b>Hello, World!</b>";
-    	PD4ML pd4ml = new PD4ML(null);
+    	PD4ML pd4ml = new PD4ML();
     	
     	ByteArrayInputStream bais = new ByteArrayInputStream(html.getBytes());
     	// read and parse HTML

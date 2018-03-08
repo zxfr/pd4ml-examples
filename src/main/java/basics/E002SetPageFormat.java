@@ -17,7 +17,7 @@ public class E002SetPageFormat {
     	
     	String html = "TEST<pd4ml:page.break><b>Hello, World!</b><pd4ml:page.break>Third Page";
 
-    	PD4ML pd4ml = new PD4ML(null);
+    	PD4ML pd4ml = new PD4ML();
 
     	// define page format for the first page 
     	pd4ml.setPageSize(PageSize.A5, "1");

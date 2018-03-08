@@ -15,13 +15,13 @@ public class E010InjectHtml {
     public static void main( String[] args ) throws IOException {
 
     	String html = "TEST<pd4ml:page.break><b>Hello, World!</b>";
-    	PD4ML pd4ml = new PD4ML(null);
+    	PD4ML pd4ml = new PD4ML();
 
     	// insert some content just after the opening <body> tag:
     	pd4ml.injectHtml("Some new content to the top of the document", true);
     	
     	// insert some content before the closing </body> tag:
-    	pd4ml.injectHtml("<p>Content to append", false);
+    	pd4ml.injectHtml("<p style='color: tomato'>Content to append", false);
 
     	// pd4ml.injectHtml() API calls must be before pd4ml.readHTML()
     	

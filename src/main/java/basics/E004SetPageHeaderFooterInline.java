@@ -31,7 +31,7 @@ public class E004SetPageHeaderFooterInline {
     			+ "<pd4ml:page.footer height=30><div style='width: 100%; text-align: right'>Page: $[page]</div></pd4ml:page.footer>"
     			+ "Second Page";
     	
-    	PD4ML pd4ml = new PD4ML(null);
+    	PD4ML pd4ml = new PD4ML();
     	
     	ByteArrayInputStream bais = new ByteArrayInputStream(html.getBytes());
     	pd4ml.readHTML(bais);

@@ -21,7 +21,7 @@ public class E007SetPageWatermark {
     			+ "</head>"
     			+ "<body>First Page<pd4ml:page.break>Second Page";
     	
-    	PD4ML pd4ml = new PD4ML(null);
+    	PD4ML pd4ml = new PD4ML();
 
     	// define watermark for the first page 
     	pd4ml.setWatermark("<b>WATERMARK</b>", 

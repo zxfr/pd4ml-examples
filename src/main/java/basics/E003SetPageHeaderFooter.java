@@ -21,7 +21,7 @@ public class E003SetPageHeaderFooter {
     			+ "</head>"
     			+ "<body>First Page<pd4ml:page.break>Second Page";
     	
-    	PD4ML pd4ml = new PD4ML(null);
+    	PD4ML pd4ml = new PD4ML();
 
     	// define page header for the first page 
     	pd4ml.setPageHeader("$[title]", 30, "1");

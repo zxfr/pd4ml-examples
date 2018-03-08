@@ -29,7 +29,7 @@ public class E008SetPageWatermarkInline {
     			+ "Second Page";
     	
     	
-    	PD4ML pd4ml = new PD4ML(null);
+    	PD4ML pd4ml = new PD4ML();
 
     	ByteArrayInputStream bais = new ByteArrayInputStream(html.getBytes());
     	pd4ml.readHTML(bais);
