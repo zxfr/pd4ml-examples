@@ -21,10 +21,24 @@
 		</dependency>
 	</dependencies>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 	<repositories>
 		<repository>
-			<id>pd4ml-src</id>
-			<url>https://pd4ml.tech/maven2-src/</url>
+			<id>pd4ml</id>
+			<url>https://pd4ml.tech/maven2/</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
