@@ -10,29 +10,23 @@ import com.pd4ml.PD4ML;
 /**
  * Generates PDF from a simple HTML string. Page format, margins etc are default.
  */
-public class H001ConvertHtml {
+public class H003CreateBookmarks {
     public static void main( String[] args ) throws IOException {
     	PD4ML pd4ml = new PD4ML();
 
        	pd4ml.setHtmlWidth(900); // render HTML in a virtual frame 900px wide
     	pd4ml.addStyle( 
-    					// specify TTF font file for "Consolas" font face (only "plain" style, in the case). 
-    			
-    					// Here we use free FiraMono-Regular instead of the original Consolas.
-    					// Other font faces to be mapped to PDF viewer standard built-in fonts.
-    			
-    					// In the resulting PDF you can see '?' symbols instead of some character glyphs.
-    					// That means the missing glyphs are not defined by any of the available fonts.
-    			
-    					// As a workaround create a font dir, place a set of fonts there to cover the 
-    					// desired language or character range, index fonts and refer to the dir 
-    					// with pd4ml.useTTF() API call. Optionally the font dir can be packed to
-    					// a fonts.jar
+    			"@font-face {\r\n" + 
+    			"  font-family: \"Arial\";\r\n" + 
+    			"  src: url(\"java:/html/LibreFranklin-Regular.ttf\") format(\"ttf\"),\r\n" + 
+    			"}" +
     			"@font-face {\r\n" + 
     			"  font-family: \"Consolas\";\r\n" + 
     			"  src: url(\"java:/html/FiraMono-Regular.ttf\") format(\"ttf\"),\r\n" + 
-    			"}\n", false);
+    			"}", false);
 
+    	pd4ml.generateBookmarksFromHeadings(true); 
+    										   
     	// read and parse HTML
     	pd4ml.readHTML(new URL("java:/html/H001.htm"));
     	
