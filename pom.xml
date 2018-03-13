@@ -6,6 +6,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>com.pd4ml.examples</name>
 	<description>PD4ML v4 API usage examples</description>
+	<properties>
+		<project.build.sourceEncoding>Cp1252</project.build.sourceEncoding>
+	</properties>
 
 	<dependencies>
 		<dependency>
