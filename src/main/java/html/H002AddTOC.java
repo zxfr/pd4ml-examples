@@ -18,11 +18,11 @@ public class H002AddTOC {
     	pd4ml.addStyle( // specify TTF substitution font files for "Consolas" and "Arial" font faces (only "plain" style, in the case). 
     			"@font-face {\r\n" + 
     			"  font-family: \"Arial\";\r\n" + 
-    			"  src: url(\"java:/html/LibreFranklin-Regular.ttf\") format(\"ttf\"),\r\n" + 
+    			"  src: url(\"java:/html/rc/LibreFranklin-Regular.ttf\") format(\"ttf\"),\r\n" + 
     			"}" +
        			"@font-face {\r\n" + 
     			"  font-family: \"Consolas\";\r\n" + 
-    			"  src: url(\"java:/html/FiraMono-Regular.ttf\") format(\"ttf\"),\r\n" + 
+    			"  src: url(\"java:/html/rc/FiraMono-Regular.ttf\") format(\"ttf\"),\r\n" + 
     			"}\n", false);
 
     	pd4ml.injectHtml("<pd4ml:toc>", true); // forces PD4ML to process <pd4ml:toc> tag as it was in the source HTML
