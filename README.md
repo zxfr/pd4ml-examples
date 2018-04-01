@@ -15,8 +15,8 @@ wrapper **PD4ML** classes in **org.zefer** package. It is recommended to switch/
 for previous **PD4ML** versions may render with flaws.
 
 4. **PD4ML v4** changes the default HTML-to-PDF scale factor. If **setHtmlWidth()** method is not explicitly invoked, it auto-computes the value to perform
-a conversion with 72dpi scale factor. The value depends on chosen target file format (default is portrait A4) and page margins 
-(default is 10mm for PDF, 0mm for images) 
+a conversion with **72dpi** scale factor. The value depends on chosen target file format (default is portrait **A4**) and page margins 
+(default is **10mm** for **PDF**, **0mm** for images) 
 
 5. The API splits the conversion process to two phases. First you need to invoke **readHTML()** method to read a source document. 
 By default an **HTML** (styled with **CSS**) is expected. However it can be arbitrary **XML**, where tag nature is specified with **CSS** "display" 
