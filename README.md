@@ -20,7 +20,7 @@ a conversion with 72dpi scale factor. The value depends on chosen target file fo
 
 5. The API splits the conversion process to two phases. First you need to invoke **readHTML()** method to read a source document. 
 By default an **HTML** (styled with **CSS**) is expected. However it can be arbitrary **XML**, where tag nature is specified with **CSS** "display" 
-property, e.g. **<sideblock style="display: block; float: right">Side content</sideblock>**. 
+property, e.g. **&lt;sideblock style="display: block; float: right"&gt;Side content&lt;/sideblock&gt;**. 
 
 After the document is read and parsed you can render and write it as **PDF**, **PDF/A**, **RTF** or an raster image with **writePDF()** or 
 another corresponding method. If you need a conversion result in different formats, there is no need to reread the source **HTML**.
@@ -41,14 +41,14 @@ pd4ml.writePDF(fos);
  
 6. As before, **PD4ML** does not rely on third-party components. It even implements its own basic **SVG** rendering module. However when 
 a full-featured **SVG** or **MathML** support is needed, **PD4ML** provides a way to plug **Batik**, **JEuclid** or another library and to associate 
-it with a particular or custom tag (**<svg>**, **<math>**, **<etc>**)  
+it with a particular or custom tag (**&lt;svg&gt;**, **&lt;math&gt;**, **&lt;etc&gt;**)  
 
-7. **PDF**-specific features like watermarks, page headers/footers etc are implemented with proprietary tags now (i.e. **<pd4ml:watermark>**).
+7. **PDF**-specific features like watermarks, page headers/footers etc are implemented with proprietary tags now (i.e. **&lt;pd4ml:watermark&gt;**).
 Now you can either define let's say a watermark either in source **HTML**, or with a corresponding **PD4ML API** call or as 
 an **HTML** code snippet, added to source **HTML** with **injectHTML()** API call.
 
-8. **inectHTML()** API call allows to include an arbitrary HTML portion either after opening **<body>** tag or just before a closing 
-**</body>** tag.
+8. **inectHTML()** API call allows to include an arbitrary HTML portion either after opening **&lt;body&gt;** tag or just before a closing 
+**&lt;/body&gt;** tag.
 
 
 
