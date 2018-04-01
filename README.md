@@ -23,7 +23,7 @@ By default an **HTML** (styled with **CSS**) is expected. However it can be arbi
 property, e.g. **&lt;sideblock style="display: block; float: right"&gt;Side content&lt;/sideblock&gt;**. 
 
 After the document is read and parsed you can render and write it as **PDF**, **PDF/A**, **RTF** or an raster image with **writePDF()** or 
-another corresponding method. If you need a conversion result in different formats, there is no need to reread the source **HTML**.
+another corresponding method. If you need a conversion result in different formats, there is no need to reread the source **HTML**. 
 
 A simple converter code looks like that:
 ```java
