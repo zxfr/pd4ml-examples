@@ -20,7 +20,7 @@ a conversion with **72dpi** scale factor. The value depends on chosen target fil
 
 5. The API splits the conversion process to two phases. First you need to invoke **readHTML()** method to read a source document. 
 By default an **HTML** (styled with **CSS**) is expected. However it can be arbitrary **XML**, where tag nature is specified with **CSS** "display" 
-property, e.g. **&lt;sideblock style="display: block; float: right"&gt;Side content&lt;/sideblock&gt;**. 
+property, e.g. **&lt;sideblock style="display: block; float: right"&gt;Side content&lt;/sideblock&gt;**.
 
 After the document is read and parsed you can render and write it as **PDF**, **PDF/A**, **RTF** or an raster image with **writePDF()** or 
 another corresponding method. If you need a conversion result in different formats, there is no need to reread the source **HTML**. 
