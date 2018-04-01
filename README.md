@@ -26,7 +26,7 @@ After the document is read and parsed you can render and write it as **PDF**, **
 another corresponding method. If you need a conversion result in different formats, there is no need to reread the source **HTML**.
 
 A simple converter code looks like that:
-```
+```java
 PD4ML pd4ml = new PD4ML();
 
 String html = "TEST<pd4ml:page.break><b>Hello, World!</b>";
