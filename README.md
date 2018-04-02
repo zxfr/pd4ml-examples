@@ -1,6 +1,5 @@
 pd4ml-examples
 ==============
-There is a set of examples to illustrate usage of the newest PD4ML API.
 
 New in PD4ML v4
 ---------------
@@ -50,6 +49,24 @@ an **HTML** code snippet, added to source **HTML** with **injectHTML()** API cal
 8. **inectHTML()** API call allows to include an arbitrary HTML portion either after opening **&lt;body&gt;** tag or just before a closing 
 **&lt;/body&gt;** tag.
 
+9. **CSS** nested **At-rules** support added for **@page** and **@font-face**
+```css
+@page :first {
+  margin: 10pt;
+  size: A4 landscape;
+}
+@font-face {
+  font-family: "Consolas";
+  src: url("java:/html/rc/FiraMono-Regular.ttf") format("ttf");
+}
+@font-face { 
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/lato/v11/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}
+
+```
 
 
 

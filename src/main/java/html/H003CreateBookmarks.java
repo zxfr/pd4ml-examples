@@ -35,9 +35,6 @@ public class H003CreateBookmarks {
     	
     	// render and write the result as PDF
     	pd4ml.writePDF(fos);
-    	// alternatively or additionally: 
-    	// pd4ml.writeRTF(rtfos, false);
-    	// BufferedImage[] images = pd4ml.renderAsImages();
     	
     	// open the just-generated PDF with a default PDF viewer
     	Desktop.getDesktop().open(pdf);
