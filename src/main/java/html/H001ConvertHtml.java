@@ -28,9 +28,9 @@ public class H001ConvertHtml {
     					// desired language or character range, index fonts and refer to the dir 
     					// with pd4ml.useTTF() API call. Optionally the font dir can be packed to
     					// a fonts.jar
-    			"@font-face {\r\n" + 
-    			"  font-family: \"Consolas\";\r\n" + 
-    			"  src: url(\"java:/html/rc/FiraMono-Regular.ttf\") format(\"ttf\"),\r\n" + 
+    			"@font-face {\n" + 
+    			"  font-family: \"Consolas\";\n" + 
+    			"  src: url(\"java:/html/rc/FiraMono-Regular.ttf\") format(\"ttf\"),\n" + 
     			"}\n", false);
 
     	// read and parse HTML
