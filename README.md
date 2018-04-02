@@ -46,7 +46,7 @@ it with a particular or custom tag (**&lt;svg&gt;**, **&lt;math&gt;**, **&lt;etc
 Now you can either define let's say a watermark either in source **HTML**, or with a corresponding **PD4ML API** call or as 
 an **HTML** code snippet, added to source **HTML** with **injectHTML()** API call.
 
-8. **inectHTML()** API call allows to include an arbitrary HTML portion either after opening **&lt;body&gt;** tag or just before a closing 
+8. **injectHTML()** API call allows to include an arbitrary HTML portion either after opening **&lt;body&gt;** tag or just before closing 
 **&lt;/body&gt;** tag.
 
 9. **CSS** nested **At-rules** support added for **@page** and **@font-face**
