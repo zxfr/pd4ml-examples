@@ -1,10 +1,17 @@
 pd4ml-examples
 ==============
 
+> **PD4ML v4** is currently in pre-release phase and under extensive testing. 
+There may be bugs - but they will be hopefully only in 'edge cases' - we still work on that. 
+
+> The first **PD4ML v4** release will have some restrictions: **RTL** (i.e Arabic) script support disabled;
+**&lt;pd4ml:page.break&gt;** attributes ignored; **SVG** support (most probably) disabled. The features will be available from v4.0.5
+
 New in PD4ML v4
 ---------------
 
-1. **PD4ML** is **Maven**-centric now. Each v4 release is published to Maven repository. Also nightly builds are available in the 
+1. **PD4ML** is **Maven**-centric now. Each v4 release is published to Maven repository (See **pom.xml** for its current location). 
+Also nightly builds are available in the 
 repository as snapshots. The repository libraries are supplied with Javadoc JARs and optionally with source code JARs (access restricted to **PD4ML SRC** licensees)
 
 2. The main **PD4ML** class package is **com.pd4ml** now. For backward (to some extend) compatibility **PD4ML** JAR includes deprecated 
