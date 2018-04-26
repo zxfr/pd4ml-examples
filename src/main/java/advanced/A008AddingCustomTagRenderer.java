@@ -38,10 +38,10 @@ public class A008AddingCustomTagRenderer {
 		}
 		
 		@Override
-		public void paint(float x, float y, float containerWidth, float containerHeight, Graphics2D g) {
+		public void paint(float x, float y, float width, float height, float containerWidth, float containerHeight, Graphics2D g) {
 		    g.setColor(Color.red);
-		    float min = Math.min(width, height); // width and height are implicitly set based on 
-		    									 // the corresponding tag attribute values
+		    float min = Math.min(width, height); // width and height are based on 
+		    									 // the corresponding tag attribute values / style
 	        float base = min * .5f;
 	        y += min * .07f;
 			GeneralPath path = new GeneralPath();
