@@ -75,5 +75,27 @@ an **HTML** code snippet, added to source **HTML** with **injectHTML()** API cal
 
 ```
 
+How to run the examples
+-----------------------
+
+The examples are available as an Eclipse project and supplied with Maven build script. 
+It is not mandatory to use Eclipse and Maven, but the combination makes the evaluation process simpler.   
+
+1. Check PD4ML examples project out. You may use the GitHub web interface to download 
+the project or to clone it with the command line ```git clone https://github.com/zxfr/pd4ml-examples.git```
+
+2. Import the project to Eclipse as Maven project with *File->Import...->Maven->Existing Maven project* 
+
+3. Right mouse click on the 'pd4ml-examples' project and choose *Run As->Maven build*. Type ```clean install``` 
+as build goals. The build script picks the most recent PD4ML library version from the repository.
+
+From this point you can run each example class (like E001GettingStarted.java) individually by a right-clicking 
+on it in Eclipse navigation pane and choosing *Run as->Java Application*
+
+If you prefer to run the examples without Maven, download the newest 
+pd4ml-4.0.0-*.*-*.jar from https://pd4ml.tech/maven2/com/pd4ml/pd4ml/4.0.0-SNAPSHOT/ and add it to the projects classpath.
+
+> ```pd4ml.tech``` domain will change to ```pd4ml.com``` after the new PD4ML web site launch in the nearest future
+
 
 
