@@ -27,14 +27,14 @@ public class A008AddingCustomTagRenderer {
 		
 		@Override
 		public CustomTag getInstance(String code, FontCache fontCache) {
-			return new StarTag(code, fontCache);
+			return new StarTag(code, fontCache, this);
 		}
 		
 		public StarTag() {
 		}
 		
-		public StarTag(String code, FontCache fontCache) {
-			super(code, fontCache);
+		public StarTag(String code, FontCache fontCache, CustomTag prime) {
+			super(code, fontCache, prime);
 		}
 		
 		@Override
