@@ -38,6 +38,8 @@ public class P001ConvertAndMergeWithPDF {
 		System.out.println(doc.getNumberOfPages());
 
     	// open the just-generated PDF with a default PDF viewer
-    	Desktop.getDesktop().open(f);
+		if ( args.length == 0 ) {
+			Desktop.getDesktop().open(f);
+		}
     }
 }

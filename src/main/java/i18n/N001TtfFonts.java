@@ -17,10 +17,14 @@ public class N001TtfFonts {
     public static void main( String[] args ) throws IOException {
     	
     	PD4ML pd4ml = new PD4ML();
-    	pd4ml.useTTF(FONTS_DIR, true); // The second parameter forces to index fonts in FONTS_DIR. 
-    	// As the indexing of a font directory with a big number of fonts is time/resource consuming, 
-    	// it is a good idea to prepare the font mapping file in advance.
-    	// See the next example how to index.
+    	try {
+			pd4ml.useTTF(FONTS_DIR, true); // The second parameter forces to index fonts in FONTS_DIR. 
+			// As the indexing of a font directory with a big number of fonts is time/resource consuming, 
+			// it is a good idea to prepare the font mapping file in advance.
+			// See the next example how to index.
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
     	
     	String html = "TEST<pd4ml:page.break><b>Hello, World!</b>";
     	ByteArrayInputStream bais = new ByteArrayInputStream(html.getBytes());
@@ -33,6 +37,8 @@ public class N001TtfFonts {
     	pd4ml.writePDF(fos);
     	
     	// open the just-generated PDF with a default PDF viewer
-    	Desktop.getDesktop().open(pdf);
+		if ( args.length == 0 ) {
+			Desktop.getDesktop().open(pdf);
+		}
     }
 }

@@ -32,6 +32,8 @@ public class P004UpdatePdfMetaInfo {
 		doc.write(new FileOutputStream(f), null, -1); // no password, default permissions  
 
     	// open the just-generated PDF with a default PDF viewer
-    	Desktop.getDesktop().open(f);
+		if ( args.length == 0 ) {
+			Desktop.getDesktop().open(f);
+		}
     }
 }

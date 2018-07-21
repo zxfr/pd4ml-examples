@@ -30,6 +30,8 @@ public class P002MergeTwoPDFs {
 		pdf1.write(new FileOutputStream(f));
 
     	// open the just-generated PDF with a default PDF viewer
-    	Desktop.getDesktop().open(f);
+		if ( args.length == 0 ) {
+			Desktop.getDesktop().open(f);
+		}
     }
 }

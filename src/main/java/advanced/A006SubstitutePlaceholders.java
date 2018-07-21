@@ -35,6 +35,8 @@ public class A006SubstitutePlaceholders {
 		pd4ml.writePDF(fos);
 
 		// open the just-generated PDF with a default PDF viewer
-		Desktop.getDesktop().open(pdf);
+		if ( args.length == 0 ) {
+			Desktop.getDesktop().open(pdf);
+		}
 	}
 }

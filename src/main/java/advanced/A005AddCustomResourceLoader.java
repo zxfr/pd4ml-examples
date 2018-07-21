@@ -19,19 +19,25 @@ public class A005AddCustomResourceLoader {
 
 	public static void main(String[] args) throws IOException {
 
-		// register new URL protocol to avoid MalformedURLException
-		URL.setURLStreamHandlerFactory(new URLStreamHandlerFactory() {
-			public URLStreamHandler createURLStreamHandler(String protocol) {
-				return DummyProvider.PROTOCOL.equals(protocol) ? new URLStreamHandler() {
-					protected URLConnection openConnection(URL url) throws IOException {
-						return new URLConnection(url) {
-							public void connect() throws IOException {
-							}
-						};
-					}
-				} : null;
-			}
-		});
+		try {
+			// register new URL protocol to avoid MalformedURLException
+			URL.setURLStreamHandlerFactory(new URLStreamHandlerFactory() {
+				public URLStreamHandler createURLStreamHandler(String protocol) {
+					return DummyProvider.PROTOCOL.equals(protocol) ? new URLStreamHandler() {
+						protected URLConnection openConnection(URL url) throws IOException {
+							return new URLConnection(url) {
+								public void connect() throws IOException {
+								}
+							};
+						}
+					} : null;
+				}
+			});
+		} catch (Throwable e) {
+			// most probably "java.lang.Error: factory already defined"
+			// by a mass example run
+			return;
+		}
 
 		PD4ML pd4ml = new PD4ML();
 
@@ -46,6 +52,8 @@ public class A005AddCustomResourceLoader {
 		pd4ml.writePDF(fos);
 
 		// open the just-generated PDF with a default PDF viewer
-		Desktop.getDesktop().open(pdf);
+		if ( args.length == 0 ) {
+			Desktop.getDesktop().open(pdf);
+		}
 	}
 }
