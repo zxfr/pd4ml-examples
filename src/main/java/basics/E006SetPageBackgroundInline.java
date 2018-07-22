@@ -20,7 +20,7 @@ public class E006SetPageBackgroundInline {
     			+ "<style>BODY {font-family: Arial}</style>"
     			+ "</head>"
     			+ "<body>"
-    			+ "<pd4ml:page.background><div style='width: 100%; height: 100%; background-color: rgb(228,255,228);'></div></pd4ml:page.background>"
+    			+ "<pd4ml:page.background><div style='width: 100%; height: 100%; background-color: rgb(228,228,255);'></div></pd4ml:page.background>"
     			+ "First Page"
     			+ "<pd4ml:page.break>"
     			// override the previously defined background with a new one starting from the current page
