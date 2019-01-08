@@ -1,11 +1,12 @@
 pd4ml-examples
 ==============
 
-> **PD4ML v4** is currently in pre-release phase and under extensive testing. 
-There may be bugs - but they will be hopefully only in 'edge cases' - we still work on that. 
+> **PD4ML v4** is already released and available for download.  
 
-> The first **PD4ML v4** release will have some restrictions: **RTL** (i.e Arabic) script support disabled;
-**&lt;pd4ml:page.break&gt;** attributes ignored; **SVG** support (most probably) disabled. The features will be available from v4.0.5
+> The actual **PD4ML v4** release v4.0.1 still has some restrictions (comparing to v3.10): **RTL** (i.e Arabic) script support disabled;
+**&lt;pd4ml:page.break&gt;** attributes ignored; some others. The features will be available in the forthcoming releases.
+
+The new product Web-site is currently under construction and going to be available soon.
 
 New in PD4ML v4
 ---------------
@@ -28,7 +29,7 @@ a conversion with **72dpi** scale factor. The value depends on chosen target fil
 By default an **HTML** (styled with **CSS**) is expected. However it can be arbitrary **XML**, where tag nature is specified with **CSS** "display" 
 property, e.g. **&lt;sideblock style="display: block; float: right"&gt;Side content&lt;/sideblock&gt;**.
 
-After the document is read and parsed you can render and write it as **PDF**, **PDF/A**, **RTF** or an raster image with **writePDF()** or 
+After the document is read and parsed you can render and write it as **PDF**, **PDF/A-1b**, **PDF/UA** (**PDF/A-2a**), **RTF** or an raster image with **writePDF()** or 
 another corresponding method. If you need a conversion result in different formats, there is no need to reread the source **HTML**. 
 
 A simple converter code looks like that:
@@ -93,7 +94,7 @@ From this point you can run each example class (like E001GettingStarted.java) in
 on it in Eclipse navigation pane and choosing *Run as->Java Application*
 
 If you prefer to run the examples without Maven, download the newest 
-pd4ml-4.0.1-*.*-*.jar from https://pd4ml.tech/maven2/com/pd4ml/pd4ml/4.0.1-SNAPSHOT/ and add it to the projects classpath.
+pd4ml-4.0.2-*.*-*.jar from https://pd4ml.tech/maven2/com/pd4ml/pd4ml/4.0.2-SNAPSHOT/ and add it to the projects classpath.
 
 > ```pd4ml.tech``` domain will change to ```pd4ml.com``` after the new PD4ML web site launch in the nearest future
 
