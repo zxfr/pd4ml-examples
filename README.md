@@ -19,13 +19,16 @@ repository as snapshots. The repository libraries are supplied with Javadoc JARs
 wrapper **PD4ML** classes in **org.zefer** package. It is recommended to switch/migrate to the new API.
 
 3. **PD4ML v4** is based on a new, totally re-implemented **HTML** rendering engine with a support of more **HTML5/CSS3** features. Unfortunately **HTML**s optimized 
-for previous **PD4ML** versions may render with flaws.
+for previous **PD4ML** versions may render with visual differences.
 
-4. **PD4ML v4** changes the default HTML-to-PDF scale factor. If **setHtmlWidth()** method is not explicitly invoked, it auto-computes the value to perform
+4. **PD4ML v4** now supports Tagged PDF, and based on it PDF/UA (as well as PDF/A-2a) document output. PDF/UA support is of interest to persons with disabilities who require 
+or benefit from assistive technology when reading electronic content.
+
+5. **PD4ML v4** changes the default HTML-to-PDF scale factor. If **setHtmlWidth()** method is not explicitly invoked, it auto-computes the value to perform
 a conversion with **72dpi** scale factor. The value depends on chosen target file format (default is portrait **A4**) and page margins 
 (default is **10mm** for **PDF**, **0mm** for images) 
 
-5. The API splits the conversion process to two phases. First you need to invoke **readHTML()** method to read a source document. 
+6. The API splits the conversion process to two phases. First you need to invoke **readHTML()** method to read a source document. 
 By default an **HTML** (styled with **CSS**) is expected. However it can be arbitrary **XML**, where tag nature is specified with **CSS** "display" 
 property, e.g. **&lt;sideblock style="display: block; float: right"&gt;Side content&lt;/sideblock&gt;**.
 
