@@ -3,7 +3,7 @@ pd4ml-examples
 
 > **PD4ML v4** is already released and available for download.  
 
-> The actual **PD4ML v4** release v4.0.1 still has some restrictions (comparing to v3.10): **RTL** (i.e Arabic) script support disabled;
+> The actual **PD4ML v4** release v4.0.2 still has some restrictions (comparing to v3.10): missing proprietary **&lt;pd4ml:layoutbox&gt;** support,
 **&lt;pd4ml:page.break&gt;** attributes ignored; some others. The features will be available in the forthcoming releases.
 
 The new product Web-site is currently under construction and going to be available soon.
@@ -97,7 +97,7 @@ From this point you can run each example class (like E001GettingStarted.java) in
 on it in Eclipse navigation pane and choosing *Run as->Java Application*
 
 If you prefer to run the examples without Maven, download the newest 
-pd4ml-4.0.2-*.*-*.jar from https://pd4ml.tech/maven2/com/pd4ml/pd4ml/4.0.2-SNAPSHOT/ and add it to the projects classpath.
+pd4ml-4.0.2-*.*-*.jar from https://pd4ml.tech/maven2/com/pd4ml/pd4ml/4.0.2/ and add it to the projects classpath.
 
 > ```pd4ml.tech``` domain will change to ```pd4ml.com``` after the new PD4ML web site launch in the nearest future
 
