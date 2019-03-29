@@ -12,7 +12,7 @@ The new product Web-site is currently under construction and going to be availab
 New in PD4ML v4
 ---------------
 
-1. **PD4ML** is **Maven**-centric now. Each v4 release is published to Maven repository (See **pom.xml** for its current location). 
+1. **PD4ML** is **Maven**-friendly now. Each v4 release is published to Maven repository (See **pom.xml** for its current location). 
 Also nightly builds are available in the 
 repository as snapshots. The repository libraries are supplied with Javadoc JARs and optionally with source code JARs (access restricted to **PD4ML SRC** licensees)
 
@@ -98,9 +98,18 @@ From this point you can run each example class (like E001GettingStarted.java) in
 on it in Eclipse navigation pane and choosing *Run as->Java Application*
 
 If you prefer to run the examples without Maven, download the newest 
-pd4ml-4.0.2-*.*-*.jar from https://pd4ml.tech/maven2/com/pd4ml/pd4ml/4.0.2/ and add it to the projects classpath.
+pd4ml-4.0.2-*.*-*.jar from https://pd4ml.tech/maven2/com/pd4ml/pd4ml/4.0.3/ and add it to the projects classpath.
 
 > ```pd4ml.tech``` domain will change to ```pd4ml.com``` after the new PD4ML web site launch in the nearest future
+
+Troubleshooting
+---------------
+
+**sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException**
+
+The exception tells, that your JDK does not include the most actual list of well-known certificate authorities. 
+It seems the most straightforward solution is to copy **jre/lib/security/cacerts** file from any JDK 1.9+ to the identical location of your actual JRE. 
+
 
 
 

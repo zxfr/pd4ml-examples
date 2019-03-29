@@ -17,11 +17,16 @@ public class RunAllExamples {
 			};
 	
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
+		String destination = "src/main/java/";
+		if ( args != null && args.length > 0 ) {
+			destination = args[0];
+		}
+		
 		List<File> before = listTempDir();
 		for ( String pkg : packages ) {
-			File packagedir = new File("src/main/java/" + pkg);
-			packagedir.mkdirs();
-			System.out.println("\n" + packagedir.getAbsolutePath() + " already exists or created.");
+			File destdir = new File(destination + pkg);
+			destdir.mkdirs();
+			System.out.println("\n" + destdir.getAbsolutePath() + " already exists or created.");
 			Class[] classes = getClasses(pkg);
 			for ( Class cls : classes ) {
 				System.out.println();
@@ -33,7 +38,7 @@ public class RunAllExamples {
 					List<File> after = listTempDir();
 					File newOne = compareContent(before, after);
 					if (newOne != null)  {
-						File target = new File("src/main/java/" + cls.getName().replace('.', '/') + ".pdf" );
+						File target = new File(destination + cls.getName().replace('.', '/') + ".pdf" );
 						if ( target.exists() ) {
 							target.delete();
 						}

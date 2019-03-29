@@ -25,6 +25,22 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<targetPath>../classes</targetPath>
+				<includes>
+					<include>**/*.txt</include>
+					<include>**/*.css</include>
+					<include>**/*.gif</include>
+					<include>**/*.png</include>
+					<include>**/*.xsl</include>
+					<include>**/*.tld</include>
+					<include>**/*.pdf</include>
+				</includes>
+			</resource>
+		</resources>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -56,4 +72,5 @@
 			</snapshots>
 		</repository>
 	</repositories>
+	
 </project>
