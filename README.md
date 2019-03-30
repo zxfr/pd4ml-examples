@@ -105,6 +105,7 @@ pd4ml-4.0.2-*.*-*.jar from https://pd4ml.tech/maven2/com/pd4ml/pd4ml/4.0.3/ and 
 Troubleshooting
 ---------------
 
+Maven build failed with
 **sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException**
 
 The exception tells, that your JDK does not include the most actual list of well-known certificate authorities. 
