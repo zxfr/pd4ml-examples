@@ -98,7 +98,7 @@ From this point you can run each example class (like E001GettingStarted.java) in
 on it in Eclipse navigation pane and choosing *Run as->Java Application*
 
 If you prefer to run the examples without Maven, download the newest 
-pd4ml-4.0.2-*.*-*.jar from https://pd4ml.tech/maven2/com/pd4ml/pd4ml/4.0.3/ and add it to the projects classpath.
+pd4ml-4.0.3-*.*-*.jar from https://pd4ml.tech/maven2/com/pd4ml/pd4ml/4.0.3-SNAPSHOT/ or from https://pd4ml.tech/v4/ and add it to the projects classpath.
 
 > ```pd4ml.tech``` domain will change to ```pd4ml.com``` after the new PD4ML web site launch in the nearest future
 
