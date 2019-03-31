@@ -98,7 +98,7 @@ From this point you can run each example class (like E001GettingStarted.java) in
 on it in Eclipse navigation pane and choosing *Run as->Java Application*
 
 If you prefer to run the examples without Maven, download the newest 
-pd4ml-4.0.2-*.*-*.jar from https://pd4ml.tech/maven2/com/pd4ml/pd4ml/4.0.3/ and add it to the projects classpath.
+pd4ml-4.0.3-*.*-*.jar from https://pd4ml.tech/maven2/com/pd4ml/pd4ml/4.0.3-SNAPSHOT/ or from https://pd4ml.tech/v4/ and add it to the projects classpath.
 
 > ```pd4ml.tech``` domain will change to ```pd4ml.com``` after the new PD4ML web site launch in the nearest future
 
@@ -111,6 +111,9 @@ Maven build failed with
 The exception tells, that your JDK does not include the most actual list of well-known certificate authorities. 
 It seems the most straightforward solution is to copy **jre/lib/security/cacerts** file from any JDK 1.9+ to the identical location of your actual JRE. 
 
+For example: 
+from C:\Program Files\Java\jdk-10.0.2\lib\security\ on Windows to /Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/security on macOS 
 
+ 
 
 
