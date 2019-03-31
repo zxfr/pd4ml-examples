@@ -97,6 +97,8 @@ as build goals. The build script picks the most recent PD4ML library version fro
 From this point you can run each example class (like E001GettingStarted.java) individually by a right-clicking 
 on it in Eclipse navigation pane and choosing *Run as->Java Application*
 
+Command ```mvn clean test``` runs all examples automatically as a test batch.
+
 If you prefer to run the examples without Maven, download the newest 
 pd4ml-4.0.3-*.*-*.jar from https://pd4ml.tech/maven2/com/pd4ml/pd4ml/4.0.3-SNAPSHOT/ or from https://pd4ml.tech/v4/ and add it to the projects classpath.
 
