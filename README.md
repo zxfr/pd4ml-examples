@@ -108,13 +108,13 @@ Troubleshooting
 ---------------
 
 Maven build failed with
-**sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException**
+```sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException```
 
 The exception tells, that your JDK does not include the most actual list of well-known certificate authorities. 
-It seems the most straightforward solution is to copy **jre/lib/security/cacerts** file from any JDK 1.9+ to the identical location of your actual JRE. 
+It seems the most straightforward solution is to copy ```jre/lib/security/cacerts``` file from any JDK 1.9+ to the identical location of your actual JRE. 
 
 For example: 
-**C:\Program Files\Java\jdk-10.0.2\lib\security\cacerts** from Windows to **/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/security** on macOS 
+```C:\Program Files\Java\jdk-10.0.2\lib\security\cacerts``` from Windows to ```/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/security``` on macOS 
 
  
 
