@@ -80,6 +80,12 @@ an **HTML** code snippet, added to source **HTML** with **injectHTML()** API cal
 
 ```
 
+PD4ML v4 Release Notes
+-----------------------
+
+https://pd4ml.tech/maven2/com/pd4ml/pd4ml/relnotes.php
+
+
 How to run the examples
 -----------------------
 
