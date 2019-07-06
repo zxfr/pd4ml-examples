@@ -1,7 +1,7 @@
 pd4ml-examples
 ==============
 
-> The actual **PD4ML v4** release v4.0.4 still has some restrictions (comparing to v3.10): missing proprietary **&lt;pd4ml:layoutbox&gt;** tag support
+> The actual **PD4ML v4** release v4.0.4 still has some restrictions (comparing to v3.11): missing proprietary **&lt;pd4ml:layoutbox&gt;** tag support
 and generateMulticolumn() API call,
 some of **&lt;pd4ml:page.break&gt;** attributes ignored; some others. The features will be available in the forthcoming releases.
 
@@ -106,7 +106,7 @@ Command ```mvn clean test``` runs all examples automatically as a test batch.
 If you prefer to run the examples without Maven, download the newest 
 pd4ml-4.0.3-*.*-*.jar from https://pd4ml.tech/maven2/com/pd4ml/pd4ml/4.0.4/ or from https://pd4ml.tech/v4/ and add it to the projects classpath.
 
-> ```pd4ml.tech``` domain will change to ```pd4ml.com``` after the new PD4ML web site launch in the nearest future
+> ```pd4ml.tech``` domain will change to ```pd4ml.com``` after the new PD4ML web site launch in the future
 
 Troubleshooting
 ---------------
