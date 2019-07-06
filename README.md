@@ -1,13 +1,11 @@
 pd4ml-examples
 ==============
 
-> **PD4ML v4** is already released and available for download.  
-
 > The actual **PD4ML v4** release v4.0.3 still has some restrictions (comparing to v3.10): missing proprietary **&lt;pd4ml:layoutbox&gt;** tag support
 and generateMulticolumn() API call,
-**&lt;pd4ml:page.break&gt;** attributes ignored; some others. The features will be available in the forthcoming releases.
+some of **&lt;pd4ml:page.break&gt;** attributes ignored; some others. The features will be available in the forthcoming releases.
 
-The new product Web-site is currently under construction and going to be available soon.
+Visit new product Web-site https://pd4ml.tech for more info.
 
 New in PD4ML v4
 ---------------
