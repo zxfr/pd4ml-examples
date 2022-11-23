@@ -20,7 +20,7 @@
 		<dependency>
 			<groupId>com.pd4ml</groupId>
 			<artifactId>pd4ml</artifactId>
-			<version>[4.0.0,)</version>
+			<version>[4.0.15fx1]</version>
 		</dependency>
 	</dependencies>
 
@@ -59,7 +59,7 @@
 			<id>pd4ml</id>
 			<url>https://pd4ml.tech/maven2/</url>
 			<snapshots>
-				<enabled>true</enabled>
+				<enabled>false</enabled>
 			</snapshots>
 		</repository>
 
