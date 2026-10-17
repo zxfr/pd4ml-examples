@@ -2,6 +2,7 @@ package advanced;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 
 import com.pd4ml.ResourceProvider;
@@ -31,5 +32,17 @@ public class DummyProvider extends ResourceProvider {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public File localFile() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void closeResourceStream() {
+		// TODO Auto-generated method stub
+		
 	}
 }

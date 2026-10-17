@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -26,30 +27,30 @@ public class ConvertedImageProvider extends ResourceProvider {
 		}
 		
 		// request the standard HTTPS resource loader to load the image bytes
-		com.pd4ml.cache.SslResourceProvider14 provider = new com.pd4ml.cache.SslResourceProvider14();
-		byte[] img = provider.getResourceAsBytes(resource, cache);
+		final com.pd4ml.cache.SslResourceProvider14 provider = new com.pd4ml.cache.SslResourceProvider14();
+		final byte[] img = provider.getResourceAsBytes(resource, cache);
 		
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		
 		BufferedImage image = ImageIO.read(new ByteArrayInputStream(img));
-		int width = image.getWidth();
-		int height = image.getHeight();
+		final int width = image.getWidth();
+		final int height = image.getHeight();
 		
 		// cannot get image dimensions or image does not exceed the size limit
 		if (width <= 0 || height <= 0 && width < maxwidth && height < maxheight) {
-			ByteArrayInputStream bais = new ByteArrayInputStream(img);
+			final ByteArrayInputStream bais = new ByteArrayInputStream(img);
 			return new BufferedInputStream(bais);
 		}
 
-		double scale = Math.min((double)maxwidth / width, (double)maxheight / height); ;
+		final double scale = Math.min((double)maxwidth / width, (double)maxheight / height); ;
 
 		final BufferedImage convertedImage = 
 				new BufferedImage((int)(width * scale), (int)(height * scale), BufferedImage.TYPE_INT_RGB);
 		
 		// scale the source image if requested
 		if (scale != 1) {
-			AffineTransform scaleTransform = AffineTransform.getScaleInstance(scale, scale);
-			AffineTransformOp bilinearScaleOp = 
+			final AffineTransform scaleTransform = AffineTransform.getScaleInstance(scale, scale);
+			final AffineTransformOp bilinearScaleOp = 
 					new AffineTransformOp(scaleTransform, AffineTransformOp.TYPE_BILINEAR);
 			image = bilinearScaleOp.filter(image,
 					new BufferedImage((int)(int)(width * scale), (int)(height * scale), image.getType()));
@@ -58,7 +59,7 @@ public class ConvertedImageProvider extends ResourceProvider {
 		convertedImage.createGraphics().drawImage(image, 0, 0, Color.WHITE, null);
 		ImageIO.write(convertedImage, "JPEG", baos);
 
-		ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+		final ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
 		return new BufferedInputStream(bais);
 	}
 
@@ -69,5 +70,17 @@ public class ConvertedImageProvider extends ResourceProvider {
 		}
 		
 		return false;
+	}
+
+	@Override
+	public File localFile() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void closeResourceStream() {
+		// TODO Auto-generated method stub
+		
 	}
 }

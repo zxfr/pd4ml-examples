@@ -14,6 +14,7 @@ public class RunAllExamples {
 			"i18n",
 			"advanced",
 			"pdftools",
+			"standards",
 			};
 	
 	public static void main(String[] args) throws ClassNotFoundException, IOException {

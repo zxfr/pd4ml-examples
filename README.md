@@ -1,125 +1,89 @@
 pd4ml-examples
 ==============
 
-> The actual **PD4ML v4** release v4.0.4 still has some restrictions (comparing to v3.11): missing proprietary **&lt;pd4ml:layoutbox&gt;** tag support
-and generateMulticolumn() API call,
-some of **&lt;pd4ml:page.break&gt;** attributes ignored; some others. The features will be available in the forthcoming releases.
+Ready-to-run Java examples for **PD4ML v4**, the HTML-to-PDF converter for Java.
 
-Visit new product Web-site https://pd4ml.tech for more info.
+Documentation
+-------------
 
-New in PD4ML v4
----------------
+The documentation source is **https://pd4ml.com/docs/** (PD4ML Programmer's Manual, API and tag reference).
 
-1. **PD4ML** is **Maven**-friendly now. Each v4 release is published to Maven repository (See **pom.xml** for its current location). 
-Also nightly builds are available in the 
-repository as snapshots. The repository libraries are supplied with Javadoc JARs and optionally with source code JARs (access restricted to **PD4ML SRC** licensees)
+* Release notes: https://pd4ml.com/release-notes/
+* Product site and downloads: https://pd4ml.com/
+* Maven repository: https://pd4ml.com/maven2/ (group `com.pd4ml`, artifact `pd4ml`)
 
-2. The main **PD4ML** class package is **com.pd4ml** now. For backward (to some extend) compatibility **PD4ML** JAR includes deprecated 
-wrapper **PD4ML** classes in **org.zefer** package. It is recommended to switch/migrate to the new API.
+Requirements
+------------
 
-3. **PD4ML v4** is based on a new, totally re-implemented **HTML** rendering engine with a support of more **HTML5/CSS3** features. Unfortunately **HTML**s optimized 
-for previous **PD4ML** versions may render with visual differences.
+* Java 8 or newer
+* PD4ML v4 library. The `pom.xml` takes the newest available version from the PD4ML Maven repository
+  (version range `[4.0.22,)`, snapshots enabled). Currently published:
+  * v4.0.x line: releases up to **4.0.23fx2**, snapshot **4.0.24-SNAPSHOT**
+  * v4.1.x line: release **4.1.1**, snapshot **4.1.2-SNAPSHOT**
+* The examples in the `standards` package and the PDF tools examples in `com.pd4ml.pdf.*` use APIs
+  available in the **v4.1.x** line only.
 
-4. **PD4ML v4** now supports **Tagged PDF**, and based on it **PDF/UA** (as well as **PDF/A-2a**) document output. **PDF/UA** support is of interest to persons with disabilities who require 
-or benefit from assistive technology when reading electronic content.
+Without a license PD4ML runs in evaluation mode. A license file `pd4ml.lic` is looked up in the current working
+directory and then in the classpath; see https://pd4ml.com/docs/ for licensing details.
 
-5. **PD4ML v4** changes the default HTML-to-PDF scale factor. If **setHtmlWidth()** method is not explicitly invoked, it auto-computes the value to perform
-a conversion with **72dpi** scale factor. The value depends on chosen target file format (default is portrait **A4**) and page margins 
-(default is **10mm** for **PDF**, **0mm** for images) 
+Examples
+--------
 
-6. The API splits the conversion process to two phases. First you need to invoke **readHTML()** method to read a source document. 
-By default an **HTML** (styled with **CSS**) is expected. However it can be arbitrary **XML**, where tag nature is specified with **CSS** "display" 
-property, e.g. **&lt;sideblock style="display: block; float: right"&gt;Side content&lt;/sideblock&gt;**.
+All example sources are in `src/main/java`. Each HTML conversion example has a `main()` method and, next to it,
+the PDF it produces.
 
-After the document is read and parsed you can render and write it as **PDF**, **PDF/A-1b**, **PDF/UA** (**PDF/A-2a**), **RTF** or an raster image with **writePDF()** or 
-another corresponding method. If you need a conversion result in different formats, there is no need to reread the source **HTML**. 
+| Package | Examples |
+|---|---|
+| `basics` | E001 getting started, E002 page format, E003/E004 page headers and footers (API and inline tags), E005/E006 page background, E007/E008 watermarks, E009 password protection and document permissions, E010 `injectHtml()` |
+| `html` | H001 HTML file conversion with a custom TTF font, H002 table of contents, H003 bookmarks, H004 page breaks, H005 file attachments, H006 footnotes, H007 page number info |
+| `i18n` | N001/N002 TTF fonts for international text |
+| `advanced` | A001 print dialog on open, A002 silent print, A003 HTML from the classpath, A004 progress listener, A005 custom resource loaders (incl. image resampling and JPEG conversion), A006 placeholder substitution, A007 rendering status info, A008 custom tag renderer |
+| `pdftools` | P001 convert and append pages of an existing PDF, P002 merge two PDFs, P003 merge and protect with a password, P004 update PDF meta info, P005 underlay/overlay |
+| `standards` | Z001 ZUGFeRD / Factur-X invoice (PDF/A-3 with embedded invoice XML) |
+| `com.pd4ml.pdf.cos.example.usecases` | low-level PDF object model (COS): parsing, path queries, listing objects and pages, incremental updates, encrypted PDFs, stream filters, building a PDF from scratch, error recovery |
+| `com.pd4ml.pdf.merge.example.usecases` | `PdfMerger`: merging, page range grammar, filtering and reordering, shared resource deduplication, encrypted sources, encrypted output, tagged PDF reconciliation, error handling |
+| `com.pd4ml.pdf.optimizer.example.usecases` | `PdfOptimizer`: cleanup, deduplication of shared and duplicate content, encrypted input and output, error handling |
+| `com.pd4ml.pdf.sign.example` | `PdfSigner`: invisible and visible signatures (text, image), digest algorithms, RFC 3161 timestamps, DocMDP certification, co-signing, PKCS#11 HSM and cloud KMS signing, LTV, signature field inspection |
+| `com.pd4ml.pdf.xfdf.example.usecases` | XFDF export and import of annotations and form field values, filtering, encrypted sources, post-import optimization |
 
-A simple converter code looks like that:
+`com.pd4ml.examples.support` contains helpers shared by the PDF tools examples (sample PDF generation,
+a self-signed test PKI for the signing examples).
+
+A minimal conversion:
+
 ```java
 PD4ML pd4ml = new PD4ML();
-
-String html = "TEST<pd4ml:page.break><b>Hello, World!</b>";
-ByteArrayInputStream bais = new ByteArrayInputStream(html.getBytes());
-
-pd4ml.readHTML(bais);
-
-FileOutputStream fos = new FileOutputStream("hello.pdf");
-
-pd4ml.writePDF(fos);
-```
- 
-6. As before, **PD4ML** does not rely on third-party components. It even implements its own basic **SVG** rendering module. However when 
-a full-featured **SVG** or **MathML** support is needed, **PD4ML** provides a way to plug **Batik**, **JEuclid** or another library and to associate 
-it with a particular or custom tag (**&lt;svg&gt;**, **&lt;math&gt;**, **&lt;etc&gt;**)  
-
-7. **PDF**-specific features like watermarks, page headers/footers etc are implemented with proprietary tags now (i.e. **&lt;pd4ml:watermark&gt;**).
-Now you can either define let's say a watermark either in source **HTML**, or with a corresponding **PD4ML API** call or as 
-an **HTML** code snippet, added to source **HTML** with **injectHTML()** API call.
-
-8. **injectHTML()** API call allows to include an arbitrary HTML portion either after opening **&lt;body&gt;** tag or just before closing 
-**&lt;/body&gt;** tag.
-
-9. **CSS** nested **At-rules** support added for **@page** and **@font-face**
-```css
-@page :first {
-  margin: 10pt;
-  size: A4 landscape;
+pd4ml.readHTML(new ByteArrayInputStream("<b>Hello, World!</b>".getBytes(StandardCharsets.UTF_8)));
+try (FileOutputStream fos = new FileOutputStream("hello.pdf")) {
+    pd4ml.writePDF(fos);
 }
-@font-face {
-  font-family: "Consolas";
-  src: url("java:/html/rc/FiraMono-Regular.ttf") format("ttf");
-}
-@font-face { 
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/lato/v11/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
-}
-
 ```
 
-PD4ML v4 Release Notes
------------------------
-
-https://pd4ml.tech/release-notes/
-
+The main API class is `com.pd4ml.PD4ML`. The `org.zefer.pd4ml` classes are deprecated wrappers for code written
+for PD4ML v3.
 
 How to run the examples
 -----------------------
 
-The examples are available as an Eclipse project and supplied with Maven build script. 
-It is not mandatory to use Eclipse and Maven, but the combination makes the evaluation process simpler.   
+1. Clone the project: `git clone https://github.com/zxfr/pd4ml-examples.git`
+2. Run all examples with Maven: `mvn clean test`. The test batch writes the generated PDFs to
+   `${java.io.tmpdir}/pd4ml-examples/`.
+3. Or import the project into Eclipse (*File -> Import... -> Maven -> Existing Maven Projects*) or another IDE and
+   run any example class as a Java application. Run the examples with the project root as the working directory:
+   some of them read their input files by relative paths.
 
-1. Check PD4ML examples project out. You may use the GitHub web interface to download 
-the project or to clone it with the command line ```git clone https://github.com/zxfr/pd4ml-examples.git```
+An example opens the generated PDF in the default PDF viewer unless it is started with an argument
+(e.g. `noviewer`). `RunAllExamples` runs all packages listed in it and copies the results next to the example
+sources (or to the directory given as its first argument).
 
-2. Import the project to Eclipse as Maven project with *File->Import...->Maven->Existing Maven project* 
-
-3. Right mouse click on the 'pd4ml-examples' project and choose *Run As->Maven build*. Type ```clean install``` 
-as build goals. The build script picks the most recent PD4ML library version from the repository.
-
-From this point you can run each example class (like E001GettingStarted.java) individually by a right-clicking 
-on it in Eclipse navigation pane and choosing *Run as->Java Application*
-
-Command ```mvn clean test``` runs all examples automatically as a test batch.
-
-If you prefer to run the examples without Maven, download the newest 
-pd4ml-4.0.15-*.*-*.jar from https://pd4ml.tech/maven2/com/pd4ml/pd4ml/ or from https://pd4ml.tech/v4/ and add it to the projects classpath.
-
-> ```pd4ml.tech``` domain will change to ```pd4ml.com``` after the new PD4ML web site launch in the future
+Without Maven, download the PD4ML JAR from https://pd4ml.com/maven2/com/pd4ml/pd4ml/ and add it to the classpath.
+The `standards` example also needs the Mustang validator (`org.mustangproject:validator`, see `pom.xml`).
 
 Troubleshooting
 ---------------
 
-Maven build failed with
-```sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException```
+Maven build fails with
+`sun.security.validator.ValidatorException: PKIX path building failed`
 
-The exception tells, that your JDK does not include the most actual list of well-known certificate authorities. 
-It seems the most straightforward solution is to copy ```jre/lib/security/cacerts``` file from any JDK 1.9+ to the identical location of your actual JRE. 
-
-For example: 
-```C:\Program Files\Java\jdk-10.0.2\lib\security\cacerts``` from Windows to ```/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/security``` on macOS 
-
- 
-
-
+The JDK does not trust the certificate authority of the repository server. Update the JDK (or its
+`lib/security/cacerts` file) to a recent version.
