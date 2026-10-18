@@ -32,7 +32,7 @@ public class Z001ConvertHtml {
     					// a fonts.jar
     			"@font-face {\n" + 
     			"  font-family: \"Arial\";\n" + 
-    			"  src: url(\"java:/html/rc/FiraMono-Regular.ttf\") format(\"ttf\"),\n" + 
+    			"  src: url(\"https://pd4ml.com/f/FiraMono-Regular.ttf\") format(\"truetype\"),\n" + 
     			"}\n", false);
 
     	pd4ml.setErrorPolicy(ErrorPolicy.NORMAL);

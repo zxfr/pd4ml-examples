@@ -18,11 +18,11 @@ public class H003CreateBookmarks {
     	pd4ml.addStyle( 
     			"@font-face {\r\n" + 
     			"  font-family: \"Arial\";\r\n" + 
-    			"  src: url(\"java:/html/rc/LibreFranklin-Regular.ttf\") format(\"ttf\"),\r\n" + 
+    			"  src: url(\"java:/html/rc/LibreFranklin-Regular.ttf\") format(\"truetype\"),\r\n" + 
     			"}" +
     			"@font-face {\r\n" + 
     			"  font-family: \"Consolas\";\r\n" + 
-    			"  src: url(\"java:/html/rc/FiraMono-Regular.ttf\") format(\"ttf\"),\r\n" + 
+    			"  src: url(\"java:/html/rc/FiraMono-Regular.ttf\") format(\"truetype\"),\r\n" + 
     			"}", false);
 
     	pd4ml.generateBookmarksFromHeadings(true); 

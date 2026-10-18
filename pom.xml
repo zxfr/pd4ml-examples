@@ -58,6 +58,8 @@
 				<directory>src/main/java</directory>
 				<targetPath>../classes</targetPath>
 				<includes>
+					<include>**/*.htm</include>
+					<include>**/*.html</include>
 					<include>**/*.txt</include>
 					<include>**/*.css</include>
 					<include>**/*.gif</include>
@@ -65,6 +67,7 @@
 					<include>**/*.xsl</include>
 					<include>**/*.tld</include>
 					<include>**/*.pdf</include>
+					<include>**/*.ttf</include>
 				</includes>
 			</resource>
 		</resources>
