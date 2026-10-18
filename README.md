@@ -35,7 +35,7 @@ the PDF it produces.
 | Package | Examples |
 |---|---|
 | `basics` | E001 getting started, E002 page format, E003/E004 page headers and footers (API and inline tags), E005/E006 page background, E007/E008 watermarks, E009 password protection and document permissions, E010 `injectHtml()` |
-| `html` | H001 HTML file conversion with a custom TTF font, H002 table of contents, H003 bookmarks, H004 page breaks, H005 file attachments, H006 footnotes, H007 page number info |
+| `html` | H001 HTML file conversion with a custom TTF font, H002 table of contents, H003 bookmarks, H004 page breaks, H005 file attachments, H006 footnotes, H007 page number info, H008/H009 multicolumn layout (two-column newsletter, three-column landscape glossary) |
 | `i18n` | N001/N002 TTF fonts for international text |
 | `advanced` | A001 print dialog on open, A002 silent print, A003 HTML from the classpath, A004 progress listener, A005 custom resource loaders (incl. image resampling and JPEG conversion), A006 placeholder substitution, A007 rendering status info, A008 custom tag renderer |
 | `pdftools` | P001 convert and append pages of an existing PDF, P002 merge two PDFs, P003 merge and protect with a password, P004 update PDF meta info, P005 underlay/overlay |

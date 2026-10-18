@@ -1,0 +1,159 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Document Engineering Newsletter</title>
+<style>
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	line-height: 1.45;
+	color: #222222;
+}
+h1 {
+	font-size: 22px;
+	color: #1f4e79;
+	margin: 0 0 6px 0;
+}
+h2 {
+	font-size: 16px;
+	color: #1f4e79;
+	border-bottom: 1px solid #1f4e79;
+	margin: 14px 0 6px 0;
+}
+p {
+	margin: 0 0 8px 0;
+	text-align: justify;
+}
+.lead {
+	font-size: 14px;
+	font-style: italic;
+	color: #444444;
+}
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin: 6px 0 10px 0;
+}
+td, th {
+	border: 1px solid #999999;
+	padding: 3px 5px;
+	font-size: 12px;
+}
+th {
+	background-color: #e8eef5;
+	text-align: left;
+}
+.hdr {
+	border-bottom: 2px solid #1f4e79;
+	color: #1f4e79;
+	font-weight: bold;
+	font-size: 12px;
+	padding-bottom: 3px;
+}
+.ftr {
+	border-top: 1px solid #999999;
+	font-size: 11px;
+	color: #555555;
+	padding-top: 3px;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+
+<!-- page header and footer span the whole page, not a column -->
+<pd4ml:page.header><div class="hdr">Document Engineering Newsletter &middot; Issue 4/2026</div></pd4ml:page.header>
+<pd4ml:page.footer><div class="ftr">Page $[page] of $[total]</div></pd4ml:page.footer>
+
+<h1>Print-Ready Documents from HTML</h1>
+
+<p class="lead">How teams turn web content into reports, invoices and catalogs that look as good on paper as they do on screen.</p>
+
+<h2>1. Why HTML as a source format</h2>
+
+<p>Most business documents already exist as HTML somewhere: an order confirmation in a web shop, a report in a dashboard, a
+contract in a portal. Generating the PDF from the same markup avoids a second, separately maintained template in a word
+processor or a reporting tool, and keeps the printed version in step with the screen version.</p>
+
+<p>HTML and CSS also bring a large pool of skills with them. Designers who build web pages can style a document without
+learning a proprietary layout language, and developers can fill the template with data using the tools they already use
+for the web front end.</p>
+
+<p>The price for this convenience is that the web was not made for paper. A browser window has no pages, no margins and no
+running headers. A PDF converter has to add these concepts, and it has to decide where a page ends without cutting a line
+of text or a table row in half.</p>
+
+<h2>2. Pagination</h2>
+
+<p>Page breaks are the most visible part of the difference between screen and paper. CSS offers the
+<i>page-break-before</i>, <i>page-break-after</i> and <i>page-break-inside</i> properties, and a converter may add its own
+rules on top of them: keeping a heading together with the paragraph that follows it, repeating the header row of a long table
+on every page, or avoiding a single orphaned line at the bottom of a page.</p>
+
+<p>Headers and footers are the second part. They carry the page number, the document title or a confidentiality note, and they
+often change between the first page and the following ones. In PD4ML they are defined either through the API or inline, with
+the <i>&lt;pd4ml:page.header&gt;</i> and <i>&lt;pd4ml:page.footer&gt;</i> tags.</p>
+
+<h2>3. Fonts and text</h2>
+
+<p>A PDF is only portable if the fonts travel with it. Embedding the TrueType fonts used by the document guarantees that a
+reader on another computer sees the same glyphs, line breaks and page count. Subsetting keeps the file small: only the
+characters actually used are embedded.</p>
+
+<p>Fonts are also where internationalization starts. Cyrillic, Greek, Arabic, Hebrew or CJK text needs a font that covers these
+scripts, and right-to-left languages need the text direction handled correctly in every paragraph and table cell.</p>
+
+<table>
+	<tr><th>Script</th><th>Example font</th><th>Direction</th></tr>
+	<tr><td>Latin, Cyrillic, Greek</td><td>Noto Sans</td><td>left to right</td></tr>
+	<tr><td>Arabic</td><td>Noto Naskh Arabic</td><td>right to left</td></tr>
+	<tr><td>Hebrew</td><td>Noto Sans Hebrew</td><td>right to left</td></tr>
+	<tr><td>Chinese, Japanese, Korean</td><td>Noto Sans CJK</td><td>left to right</td></tr>
+</table>
+
+<h2>4. Standards for archiving and invoicing</h2>
+
+<p>Documents that have to be readable in twenty years are usually stored as PDF/A, an ISO standard that forbids everything a
+future reader might not be able to resolve: external fonts, encryption, scripts. PDF/A-3 additionally allows embedded files,
+which is the foundation of the ZUGFeRD and Factur-X e-invoicing formats.<pd4ml:footnote>ZUGFeRD and Factur-X embed the
+invoice as XML in a PDF/A-3 document, so the same file serves both people and accounting software.</pd4ml:footnote></p>
+
+<p>Accessibility is the other standard to watch. PDF/UA requires a tagged document structure, so that screen readers can follow
+headings, lists and tables in the right order. Converting from well-structured HTML is a good starting point: the semantic
+markup already describes most of what the tags need to express.</p>
+
+<h2>5. Working with existing PDFs</h2>
+
+<p>Not every task starts with HTML. Merging a generated cover letter with a contract that already exists as PDF, adding a
+digital signature, filling in or exporting form data, or reducing the file size before archiving are all operations on
+existing documents.</p>
+
+<p>Signatures deserve a special mention: a signed PDF proves who approved the document and that it has not been changed since.
+Long-term validation information keeps the signature verifiable after the signing certificate has expired.</p>
+
+<h2>6. Layout in columns</h2>
+
+<p>Newsletters, catalogs, glossaries and price lists are easier to read in narrow columns than in lines that span the full
+page width. This newsletter is an example: PD4ML lays the document out to the width of a column, fills the columns of each
+page one after another and starts a new page after the last column.</p>
+
+<p>Headers, footers, backgrounds and watermarks still belong to the page, so the header above spans both columns, and the page
+numbers count pages, not columns. A footnote, on the other hand, is placed at the bottom of the column that refers to it.</p>
+
+<!-- a regular page break moves on to the next column; this one starts a new page -->
+<pd4ml:page.break multicolumn="true"/>
+
+<h1>Appendix: How this newsletter was made</h1>
+
+<p>The document is an ordinary HTML page with a page header, a page footer and a footnote. The Java code converts it with two
+columns per page and an 8 millimeter gap between them:</p>
+
+<p><i>pd4ml.generateMulticolumn(2, 8, true);</i></p>
+
+<p>The appendix starts on a new page because of the <i>&lt;pd4ml:page.break multicolumn="true"/&gt;</i> tag in front of it. A
+page break without the attribute would only move on to the next column.</p>
+
+<p>See H008MulticolumnNewsletter.java in the pd4ml-examples repository for the complete source.</p>
+
+</body>
+</html>
