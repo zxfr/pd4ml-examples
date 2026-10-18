@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Rechnung RE-2026-00417</title>
+<title>Rechnung</title>
 <style>
 BODY, table {
 	font-family: Verdana;
@@ -87,17 +87,23 @@ h1 {
 </head>
 <body>
 
+<!--
+  Invoice template: every $[...] placeholder - in the visible invoice, in the page footer and in
+  the embedded factur-x XML alike - is filled from the map passed to pd4ml.setDynamicData(map),
+  see Z001ConvertHtml.java. Values are inserted as is: they must not contain '&', '<' or '>'.
+-->
+
 <table style="width: 100%">
 	<tr>
 		<td style="width: 60%">
-			<div class="brand">Hofmann Service GmbH</div>
-			<div class="brand-sub">Energie · Logistikdienstleistungen · Büroservice</div>
+			<div class="brand">$[seller.name]</div>
+			<div class="brand-sub">$[seller.tagline]</div>
 		</td>
 		<td style="width: 40%; text-align: right" class="small">
-			Bahnhofstraße 27<br>
-			86807 Buchloe<br>
-			Tel. +49 8241 96530-0<br>
-			rechnung@hofmann-service.de
+			$[seller.street]<br>
+			$[seller.zip] $[seller.city]<br>
+			Tel. $[seller.phone]<br>
+			$[seller.email]
 		</td>
 	</tr>
 </table>
@@ -105,36 +111,36 @@ h1 {
 <table style="width: 100%; margin-top: 50px">
 	<tr>
 		<td style="width: 400px; vertical-align: top; padding-right: 25%">
-			<div class="sender">Hofmann Service GmbH · Bahnhofstraße 27 · 86807 Buchloe</div>
+			<div class="sender">$[seller.name] · $[seller.street] · $[seller.zip] $[seller.city]</div>
 			<div class="address" style="margin-top: 8px">
-				Lindner Logistik GmbH<br>
-				Herrn Markus Weber<br>
-				Kaiserswerther Straße 115<br>
-				40474 Düsseldorf
+				$[buyer.name]<br>
+				$[buyer.attention]<br>
+				$[buyer.street]<br>
+				$[buyer.zip] $[buyer.city]
 			</div>
 		</td>
 		<td style="width: 42%; vertical-align: top">
 			<table class="meta" cellspacing="0" cellpadding="0">
-				<tr><td class="label">Rechnungsnummer</td><td>RE-2026-00417</td></tr>
-				<tr><td class="label">Rechnungsdatum</td><td>11.02.2026</td></tr>
-				<tr><td class="label">Lieferdatum</td><td>05.02.2026</td></tr>
-				<tr><td class="label">Lieferschein</td><td>LS-2026-00388</td></tr>
-				<tr><td class="label">Fällig am</td><td>25.02.2026</td></tr>
-				<tr><td class="label">Kundennummer</td><td>339420</td></tr>
-				<tr><td class="label">Ihre Bestellung</td><td>4500017763</td></tr>
-				<tr><td class="label">Ihre USt-IdNr.</td><td>DE812345679</td></tr>
-				<tr><td class="label">Ansprechpartnerin</td><td>Sabine Keller</td></tr>
+				<tr><td class="label">Rechnungsnummer</td><td>$[inv.id]</td></tr>
+				<tr><td class="label">Rechnungsdatum</td><td>$[inv.date]</td></tr>
+				<tr><td class="label">Lieferdatum</td><td>$[delivery.date]</td></tr>
+				<tr><td class="label">Lieferschein</td><td>$[delivery.note]</td></tr>
+				<tr><td class="label">Fällig am</td><td>$[due.date]</td></tr>
+				<tr><td class="label">Kundennummer</td><td>$[buyer.id]</td></tr>
+				<tr><td class="label">Ihre Bestellung</td><td>$[buyer.order]</td></tr>
+				<tr><td class="label">Ihre USt-IdNr.</td><td>$[buyer.vatid]</td></tr>
+				<tr><td class="label">Ansprechpartnerin</td><td>$[seller.contact]</td></tr>
 			</table>
 		</td>
 	</tr>
 </table>
 
 <div style="margin-top: 40px">
-<h1>Rechnung RE-2026-00417</h1>
-<div class="small">Lieferanschrift: Lindner Logistik GmbH, Lager Sarstedt (Kostenstelle 7322), Hauptstraße 44, 31157 Sarstedt</div>
+<h1>Rechnung $[inv.id]</h1>
+<div class="small">Lieferanschrift: $[shipto.name] (Kostenstelle $[shipto.costcenter]), $[shipto.street], $[shipto.zip] $[shipto.city]</div>
 </div>
 
-<p>Sehr geehrter Herr Weber,<br>
+<p>$[buyer.greeting],<br>
 für unsere Lieferungen und Leistungen erlauben wir uns, Ihnen Folgendes in Rechnung zu stellen:</p>
 
 <table class="items" cellpadding="6" cellspacing="0" style="width: 100%">
@@ -149,48 +155,48 @@ für unsere Lieferungen und Leistungen erlauben wir uns, Ihnen Folgendes in Rech
 	</tr>
 	<tr>
 		<td>1</td>
-		<td>WA997</td>
-		<td>Wirkarbeit Hochtarif (HT)<br><span class="note">Zählpunkt DE0001346484600000000000000100038</span></td>
-		<td class="num">1.000 kWh</td>
-		<td class="num">0,0520 €</td>
-		<td class="num">19 %</td>
-		<td class="num">52,00 €</td>
+		<td>$[item1.id]</td>
+		<td>$[item1.name]<br><span class="note">Zählpunkt $[item1.meterpoint]</span></td>
+		<td class="num">$[item1.qty.text]</td>
+		<td class="num">$[item1.price.text] €</td>
+		<td class="num">$[vat.rate.text] %</td>
+		<td class="num">$[item1.total.text] €</td>
 	</tr>
 	<tr>
 		<td>2</td>
-		<td>ÖST250</td>
-		<td>Stromsteuer (Ökosteuer), Lieferantenanteil</td>
-		<td class="num">1.000 kWh</td>
-		<td class="num">0,0205 €</td>
-		<td class="num">19 %</td>
-		<td class="num">20,50 €</td>
+		<td>$[item2.id]</td>
+		<td>$[item2.name]</td>
+		<td class="num">$[item2.qty.text]</td>
+		<td class="num">$[item2.price.text] €</td>
+		<td class="num">$[vat.rate.text] %</td>
+		<td class="num">$[item2.total.text] €</td>
 	</tr>
 	<tr>
 		<td>3</td>
-		<td>KOM-STD</td>
-		<td>Kommissionierung, Mitarbeiter-Nr. 1250032 (D. Brandt)<br><span class="note">Besteller: Hr. Meier, Lager Sarstedt · Listenpreis 15,00 € abzgl. Artikelrabatt 4,50 €</span></td>
-		<td class="num">27,5 Std.</td>
-		<td class="num">10,5000 €</td>
-		<td class="num">19 %</td>
-		<td class="num">288,75 €</td>
+		<td>$[item3.id]</td>
+		<td>$[item3.name]<br><span class="note">$[item3.desc] · Listenpreis $[item3.gross.text] € abzgl. Artikelrabatt $[item3.allowance.text] €</span></td>
+		<td class="num">$[item3.qty.text]</td>
+		<td class="num">$[item3.price.text] €</td>
+		<td class="num">$[vat.rate.text] %</td>
+		<td class="num">$[item3.total.text] €</td>
 	</tr>
 	<tr>
 		<td>4</td>
-		<td>FB05</td>
-		<td>Faltenbeutel 16 x 6 x 28 cm</td>
-		<td class="num">3.500 Stk.</td>
-		<td class="num">0,0105 €</td>
-		<td class="num">19 %</td>
-		<td class="num">36,75 €</td>
+		<td>$[item4.id]</td>
+		<td>$[item4.name]</td>
+		<td class="num">$[item4.qty.text]</td>
+		<td class="num">$[item4.price.text] €</td>
+		<td class="num">$[vat.rate.text] %</td>
+		<td class="num">$[item4.total.text] €</td>
 	</tr>
 	<tr>
 		<td>5</td>
-		<td>KOP05</td>
-		<td>Kopien A4 schwarz-weiß<br><span class="note">Gerät MG-X79318, Zählerstand 543.210 – 544.420</span></td>
-		<td class="num">1.210 Stk.</td>
-		<td class="num">0,0100 €</td>
-		<td class="num">19 %</td>
-		<td class="num">12,10 €</td>
+		<td>$[item5.id]</td>
+		<td>$[item5.name]<br><span class="note">Gerät $[item5.device], Zählerstand $[item5.meter.from] – $[item5.meter.to]</span></td>
+		<td class="num">$[item5.qty.text]</td>
+		<td class="num">$[item5.price.text] €</td>
+		<td class="num">$[vat.rate.text] %</td>
+		<td class="num">$[item5.total.text] €</td>
 	</tr>
 </table>
 
@@ -199,27 +205,27 @@ für unsere Lieferungen und Leistungen erlauben wir uns, Ihnen Folgendes in Rech
 		<td style="width: 50%"></td>
 		<td style="width: 50%">
 			<table class="totals" cellspacing="0" style="width: 100%">
-				<tr><td>Summe Positionen</td><td class="num">410,10 €</td></tr>
-				<tr><td>abzgl. Sonderrabatt</td><td class="num">−21,55 €</td></tr>
-				<tr><td>zzgl. Frachtkosten</td><td class="num">15,00 €</td></tr>
-				<tr><td>Nettobetrag</td><td class="num">403,55 €</td></tr>
-				<tr><td>zzgl. 19 % USt. auf 403,55 €</td><td class="num">76,67 €</td></tr>
-				<tr class="grand"><td>Rechnungsbetrag</td><td class="num">480,22 €</td></tr>
+				<tr><td>Summe Positionen</td><td class="num">$[sum.lines.text] €</td></tr>
+				<tr><td>abzgl. $[allowance.reason]</td><td class="num">−$[sum.allowance.text] €</td></tr>
+				<tr><td>zzgl. $[charge.reason]</td><td class="num">$[sum.charge.text] €</td></tr>
+				<tr><td>Nettobetrag</td><td class="num">$[sum.taxbasis.text] €</td></tr>
+				<tr><td>zzgl. $[vat.rate.text] % USt. auf $[sum.taxbasis.text] €</td><td class="num">$[sum.vat.text] €</td></tr>
+				<tr class="grand"><td>Rechnungsbetrag</td><td class="num">$[sum.grand.text] €</td></tr>
 			</table>
 		</td>
 	</tr>
 </table>
 
-<p style="margin-top: 25px">Bitte überweisen Sie den Rechnungsbetrag bis zum <strong>25.02.2026</strong> unter Angabe der
-Rechnungsnummer <strong>RE-2026-00417</strong> auf das unten genannte Konto. Bei Zahlung innerhalb von 10 Tagen nach
-Rechnungsdatum (bis 21.02.2026) gewähren wir 2 % Skonto (9,60 €); der Zahlbetrag beträgt dann 470,62 €.</p>
+<p style="margin-top: 25px">Bitte überweisen Sie den Rechnungsbetrag bis zum <strong>$[due.date]</strong> unter Angabe der
+Rechnungsnummer <strong>$[inv.id]</strong> auf das unten genannte Konto. Bei Zahlung innerhalb von $[skonto.days] Tagen nach
+Rechnungsdatum (bis $[skonto.date]) gewähren wir $[skonto.percent.text] % Skonto ($[skonto.amount.text] €); der Zahlbetrag beträgt dann $[skonto.payable.text] €.</p>
 
 <p class="small">Es bestehen Rabatt- oder Bonusvereinbarungen. Die Ware bleibt bis zur vollständigen Bezahlung unser Eigentum.</p>
 
 <p>Vielen Dank für Ihren Auftrag.<br>
 Mit freundlichen Grüßen<br><br>
-Sabine Keller<br>
-<span class="small">Hofmann Service GmbH</span></p>
+$[seller.contact]<br>
+<span class="small">$[seller.name]</span></p>
 
 <pd4ml:page.footer>
 <hr style="height: 1px; color: #999999" noshade="noshade"/>
@@ -228,10 +234,10 @@ Sabine Keller<br>
 <center style="clear: both;">
 <table class="footer" style="width: 100%;">
 	<tr>
-		<td style="width: 25%" valign="top">Hofmann Service GmbH<br>Bahnhofstraße 27<br>86807 Buchloe<br>Deutschland</td>
-		<td style="width: 25%" valign="top">Tel. +49 8241 96530-0<br>rechnung@hofmann-service.de<br>www.hofmann-service.de</td>
-		<td style="width: 25%" valign="top">Geschäftsführer: Thomas Hofmann<br>Amtsgericht Kempten (Allgäu) HRB 14327<br>USt-IdNr. DE287415963<br>Steuernr. 127/113/40209</td>
-		<td style="width: 25%" valign="top">Commerzbank<br>IBAN DE89 3704 0044 0532 0130 00<br>BIC COBADEFFXXX</td>
+		<td style="width: 25%" valign="top">$[seller.name]<br>$[seller.street]<br>$[seller.zip] $[seller.city]<br>$[seller.countryname]</td>
+		<td style="width: 25%" valign="top">Tel. $[seller.phone]<br>$[seller.email]<br>$[seller.web]</td>
+		<td style="width: 25%" valign="top">Geschäftsführer: $[seller.ceo]<br>$[seller.court] $[seller.register]<br>USt-IdNr. $[seller.vatid]<br>Steuernr. $[seller.taxno]</td>
+		<td style="width: 25%" valign="top">$[seller.bank]<br>IBAN $[seller.iban.text]<br>BIC $[seller.bic]</td>
 	</tr>
 </table>
 </center>
@@ -256,11 +262,11 @@ xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
     </ram:GuidelineSpecifiedDocumentContextParameter>
   </rsm:ExchangedDocumentContext>
   <rsm:ExchangedDocument>
-    <ram:ID>RE-2026-00417</ram:ID>
+    <ram:ID>$[inv.id]</ram:ID>
     <ram:Name>RECHNUNG</ram:Name>
     <ram:TypeCode>380</ram:TypeCode>
     <ram:IssueDateTime>
-      <udt:DateTimeString format="102">20260211</udt:DateTimeString>
+      <udt:DateTimeString format="102">$[inv.date.code]</udt:DateTimeString>
     </ram:IssueDateTime>
     <ram:IncludedNote>
       <ram:ContentCode>ST3</ram:ContentCode>
@@ -273,15 +279,15 @@ xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
       <ram:SubjectCode>AAJ</ram:SubjectCode>
     </ram:IncludedNote>
     <ram:IncludedNote>
-      <ram:Content>Geschäftsführer: Thomas Hofmann</ram:Content>
+      <ram:Content>Geschäftsführer: $[seller.ceo]</ram:Content>
       <ram:SubjectCode>REG</ram:SubjectCode>
     </ram:IncludedNote>
     <ram:IncludedNote>
-      <ram:Content>Handelsregister: HRB 14327</ram:Content>
+      <ram:Content>Handelsregister: $[seller.register]</ram:Content>
       <ram:SubjectCode>REG</ram:SubjectCode>
     </ram:IncludedNote>
     <ram:IncludedNote>
-      <ram:Content>Amtsgericht Kempten (Allgäu)</ram:Content>
+      <ram:Content>$[seller.court]</ram:Content>
       <ram:SubjectCode>REG</ram:SubjectCode>
     </ram:IncludedNote>
     <ram:IncludedNote>
@@ -299,33 +305,33 @@ xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
         <ram:LineID>1</ram:LineID>
       </ram:AssociatedDocumentLineDocument>
       <ram:SpecifiedTradeProduct>
-        <ram:GlobalID schemeID="0088">4123456000014</ram:GlobalID>
-        <ram:SellerAssignedID>WA997</ram:SellerAssignedID>
-        <ram:Name>Wirkarbeit Hochtarif (HT)</ram:Name>
+        <ram:GlobalID schemeID="0088">$[item1.gtin]</ram:GlobalID>
+        <ram:SellerAssignedID>$[item1.id]</ram:SellerAssignedID>
+        <ram:Name>$[item1.name]</ram:Name>
         <ram:ApplicableProductCharacteristic>
           <ram:Description>Zählpunkt</ram:Description>
-          <ram:Value>DE0001346484600000000000000100038</ram:Value>
+          <ram:Value>$[item1.meterpoint]</ram:Value>
         </ram:ApplicableProductCharacteristic>
       </ram:SpecifiedTradeProduct>
       <ram:SpecifiedLineTradeAgreement>
         <ram:GrossPriceProductTradePrice>
-          <ram:ChargeAmount>0.0520</ram:ChargeAmount>
+          <ram:ChargeAmount>$[item1.gross]</ram:ChargeAmount>
         </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount>0.0520</ram:ChargeAmount>
+          <ram:ChargeAmount>$[item1.price]</ram:ChargeAmount>
         </ram:NetPriceProductTradePrice>
       </ram:SpecifiedLineTradeAgreement>
       <ram:SpecifiedLineTradeDelivery>
-        <ram:BilledQuantity unitCode="KWH">1000.0000</ram:BilledQuantity>
+        <ram:BilledQuantity unitCode="$[item1.unit]">$[item1.qty]</ram:BilledQuantity>
       </ram:SpecifiedLineTradeDelivery>
       <ram:SpecifiedLineTradeSettlement>
         <ram:ApplicableTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
           <ram:CategoryCode>S</ram:CategoryCode>
-          <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
+          <ram:RateApplicablePercent>$[vat.rate]</ram:RateApplicablePercent>
         </ram:ApplicableTradeTax>
         <ram:SpecifiedTradeSettlementLineMonetarySummation>
-          <ram:LineTotalAmount>52.00</ram:LineTotalAmount>
+          <ram:LineTotalAmount>$[item1.total]</ram:LineTotalAmount>
         </ram:SpecifiedTradeSettlementLineMonetarySummation>
       </ram:SpecifiedLineTradeSettlement>
     </ram:IncludedSupplyChainTradeLineItem>
@@ -334,29 +340,29 @@ xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
         <ram:LineID>2</ram:LineID>
       </ram:AssociatedDocumentLineDocument>
       <ram:SpecifiedTradeProduct>
-        <ram:GlobalID schemeID="0088">4123456000021</ram:GlobalID>
-        <ram:SellerAssignedID>ÖST250</ram:SellerAssignedID>
-        <ram:Name>Stromsteuer (Ökosteuer), Lieferantenanteil</ram:Name>
+        <ram:GlobalID schemeID="0088">$[item2.gtin]</ram:GlobalID>
+        <ram:SellerAssignedID>$[item2.id]</ram:SellerAssignedID>
+        <ram:Name>$[item2.name]</ram:Name>
       </ram:SpecifiedTradeProduct>
       <ram:SpecifiedLineTradeAgreement>
         <ram:GrossPriceProductTradePrice>
-          <ram:ChargeAmount>0.0205</ram:ChargeAmount>
+          <ram:ChargeAmount>$[item2.gross]</ram:ChargeAmount>
         </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount>0.0205</ram:ChargeAmount>
+          <ram:ChargeAmount>$[item2.price]</ram:ChargeAmount>
         </ram:NetPriceProductTradePrice>
       </ram:SpecifiedLineTradeAgreement>
       <ram:SpecifiedLineTradeDelivery>
-        <ram:BilledQuantity unitCode="KWH">1000.0000</ram:BilledQuantity>
+        <ram:BilledQuantity unitCode="$[item2.unit]">$[item2.qty]</ram:BilledQuantity>
       </ram:SpecifiedLineTradeDelivery>
       <ram:SpecifiedLineTradeSettlement>
         <ram:ApplicableTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
           <ram:CategoryCode>S</ram:CategoryCode>
-          <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
+          <ram:RateApplicablePercent>$[vat.rate]</ram:RateApplicablePercent>
         </ram:ApplicableTradeTax>
         <ram:SpecifiedTradeSettlementLineMonetarySummation>
-          <ram:LineTotalAmount>20.50</ram:LineTotalAmount>
+          <ram:LineTotalAmount>$[item2.total]</ram:LineTotalAmount>
         </ram:SpecifiedTradeSettlementLineMonetarySummation>
       </ram:SpecifiedLineTradeSettlement>
     </ram:IncludedSupplyChainTradeLineItem>
@@ -365,37 +371,37 @@ xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
         <ram:LineID>3</ram:LineID>
       </ram:AssociatedDocumentLineDocument>
       <ram:SpecifiedTradeProduct>
-        <ram:GlobalID schemeID="0088">4260331811362</ram:GlobalID>
-        <ram:SellerAssignedID>KOM-STD</ram:SellerAssignedID>
-        <ram:Name>Kommissionierung, Mitarbeiter-Nr. 1250032 (D. Brandt)</ram:Name>
-        <ram:Description>Besteller: Hr. Meier, Lager Sarstedt</ram:Description>
+        <ram:GlobalID schemeID="0088">$[item3.gtin]</ram:GlobalID>
+        <ram:SellerAssignedID>$[item3.id]</ram:SellerAssignedID>
+        <ram:Name>$[item3.name]</ram:Name>
+        <ram:Description>$[item3.desc]</ram:Description>
       </ram:SpecifiedTradeProduct>
       <ram:SpecifiedLineTradeAgreement>
         <ram:GrossPriceProductTradePrice>
-          <ram:ChargeAmount>15.0000</ram:ChargeAmount>
+          <ram:ChargeAmount>$[item3.gross]</ram:ChargeAmount>
           <ram:AppliedTradeAllowanceCharge>
             <ram:ChargeIndicator>
               <udt:Indicator>false</udt:Indicator>
             </ram:ChargeIndicator>
-            <ram:ActualAmount>4.5000</ram:ActualAmount>
+            <ram:ActualAmount>$[item3.allowance]</ram:ActualAmount>
             <ram:Reason>Artikelrabatt</ram:Reason>
           </ram:AppliedTradeAllowanceCharge>
         </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount>10.5000</ram:ChargeAmount>
+          <ram:ChargeAmount>$[item3.price]</ram:ChargeAmount>
         </ram:NetPriceProductTradePrice>
       </ram:SpecifiedLineTradeAgreement>
       <ram:SpecifiedLineTradeDelivery>
-        <ram:BilledQuantity unitCode="HUR">27.5000</ram:BilledQuantity>
+        <ram:BilledQuantity unitCode="$[item3.unit]">$[item3.qty]</ram:BilledQuantity>
       </ram:SpecifiedLineTradeDelivery>
       <ram:SpecifiedLineTradeSettlement>
         <ram:ApplicableTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
           <ram:CategoryCode>S</ram:CategoryCode>
-          <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
+          <ram:RateApplicablePercent>$[vat.rate]</ram:RateApplicablePercent>
         </ram:ApplicableTradeTax>
         <ram:SpecifiedTradeSettlementLineMonetarySummation>
-          <ram:LineTotalAmount>288.75</ram:LineTotalAmount>
+          <ram:LineTotalAmount>$[item3.total]</ram:LineTotalAmount>
         </ram:SpecifiedTradeSettlementLineMonetarySummation>
       </ram:SpecifiedLineTradeSettlement>
     </ram:IncludedSupplyChainTradeLineItem>
@@ -404,29 +410,29 @@ xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
         <ram:LineID>4</ram:LineID>
       </ram:AssociatedDocumentLineDocument>
       <ram:SpecifiedTradeProduct>
-        <ram:GlobalID schemeID="0088">2001015001325</ram:GlobalID>
-        <ram:SellerAssignedID>FB05</ram:SellerAssignedID>
-        <ram:Name>Faltenbeutel 16 x 6 x 28 cm</ram:Name>
+        <ram:GlobalID schemeID="0088">$[item4.gtin]</ram:GlobalID>
+        <ram:SellerAssignedID>$[item4.id]</ram:SellerAssignedID>
+        <ram:Name>$[item4.name]</ram:Name>
       </ram:SpecifiedTradeProduct>
       <ram:SpecifiedLineTradeAgreement>
         <ram:GrossPriceProductTradePrice>
-          <ram:ChargeAmount>0.0105</ram:ChargeAmount>
+          <ram:ChargeAmount>$[item4.gross]</ram:ChargeAmount>
         </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount>0.0105</ram:ChargeAmount>
+          <ram:ChargeAmount>$[item4.price]</ram:ChargeAmount>
         </ram:NetPriceProductTradePrice>
       </ram:SpecifiedLineTradeAgreement>
       <ram:SpecifiedLineTradeDelivery>
-        <ram:BilledQuantity unitCode="H87">3500.0000</ram:BilledQuantity>
+        <ram:BilledQuantity unitCode="$[item4.unit]">$[item4.qty]</ram:BilledQuantity>
       </ram:SpecifiedLineTradeDelivery>
       <ram:SpecifiedLineTradeSettlement>
         <ram:ApplicableTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
           <ram:CategoryCode>S</ram:CategoryCode>
-          <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
+          <ram:RateApplicablePercent>$[vat.rate]</ram:RateApplicablePercent>
         </ram:ApplicableTradeTax>
         <ram:SpecifiedTradeSettlementLineMonetarySummation>
-          <ram:LineTotalAmount>36.75</ram:LineTotalAmount>
+          <ram:LineTotalAmount>$[item4.total]</ram:LineTotalAmount>
         </ram:SpecifiedTradeSettlementLineMonetarySummation>
       </ram:SpecifiedLineTradeSettlement>
     </ram:IncludedSupplyChainTradeLineItem>
@@ -435,185 +441,185 @@ xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
         <ram:LineID>5</ram:LineID>
       </ram:AssociatedDocumentLineDocument>
       <ram:SpecifiedTradeProduct>
-        <ram:GlobalID schemeID="0088">4123456000038</ram:GlobalID>
-        <ram:SellerAssignedID>KOP05</ram:SellerAssignedID>
-        <ram:Name>Kopien A4 schwarz-weiß</ram:Name>
-        <ram:Description>Zählerstand von-bis: 543210 - 544420</ram:Description>
+        <ram:GlobalID schemeID="0088">$[item5.gtin]</ram:GlobalID>
+        <ram:SellerAssignedID>$[item5.id]</ram:SellerAssignedID>
+        <ram:Name>$[item5.name]</ram:Name>
+        <ram:Description>Zählerstand von-bis: $[item5.meter.from.code] - $[item5.meter.to.code]</ram:Description>
         <ram:ApplicableProductCharacteristic>
           <ram:Description>Geräte-Nr.</ram:Description>
-          <ram:Value>MG-X79318</ram:Value>
+          <ram:Value>$[item5.device]</ram:Value>
         </ram:ApplicableProductCharacteristic>
       </ram:SpecifiedTradeProduct>
       <ram:SpecifiedLineTradeAgreement>
         <ram:GrossPriceProductTradePrice>
-          <ram:ChargeAmount>0.0100</ram:ChargeAmount>
+          <ram:ChargeAmount>$[item5.gross]</ram:ChargeAmount>
         </ram:GrossPriceProductTradePrice>
         <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount>0.0100</ram:ChargeAmount>
+          <ram:ChargeAmount>$[item5.price]</ram:ChargeAmount>
         </ram:NetPriceProductTradePrice>
       </ram:SpecifiedLineTradeAgreement>
       <ram:SpecifiedLineTradeDelivery>
-        <ram:BilledQuantity unitCode="H87">1210.0000</ram:BilledQuantity>
+        <ram:BilledQuantity unitCode="$[item5.unit]">$[item5.qty]</ram:BilledQuantity>
       </ram:SpecifiedLineTradeDelivery>
       <ram:SpecifiedLineTradeSettlement>
         <ram:ApplicableTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
           <ram:CategoryCode>S</ram:CategoryCode>
-          <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
+          <ram:RateApplicablePercent>$[vat.rate]</ram:RateApplicablePercent>
         </ram:ApplicableTradeTax>
         <ram:SpecifiedTradeSettlementLineMonetarySummation>
-          <ram:LineTotalAmount>12.10</ram:LineTotalAmount>
+          <ram:LineTotalAmount>$[item5.total]</ram:LineTotalAmount>
         </ram:SpecifiedTradeSettlementLineMonetarySummation>
       </ram:SpecifiedLineTradeSettlement>
     </ram:IncludedSupplyChainTradeLineItem>
     <ram:ApplicableHeaderTradeAgreement>
-      <ram:BuyerReference>4500017763</ram:BuyerReference>
+      <ram:BuyerReference>$[buyer.order]</ram:BuyerReference>
       <ram:SellerTradeParty>
-        <ram:ID>549910</ram:ID>
-        <ram:GlobalID schemeID="0088">4333741000005</ram:GlobalID>
-        <ram:Name>Hofmann Service GmbH</ram:Name>
+        <ram:ID>$[seller.id]</ram:ID>
+        <ram:GlobalID schemeID="0088">$[seller.gln]</ram:GlobalID>
+        <ram:Name>$[seller.name]</ram:Name>
         <ram:DefinedTradeContact>
-          <ram:PersonName>Sabine Keller</ram:PersonName>
+          <ram:PersonName>$[seller.contact]</ram:PersonName>
           <ram:TelephoneUniversalCommunication>
-            <ram:CompleteNumber>+49 8241 96530-0</ram:CompleteNumber>
+            <ram:CompleteNumber>$[seller.phone]</ram:CompleteNumber>
           </ram:TelephoneUniversalCommunication>
           <ram:EmailURIUniversalCommunication>
-            <ram:URIID>rechnung@hofmann-service.de</ram:URIID>
+            <ram:URIID>$[seller.email]</ram:URIID>
           </ram:EmailURIUniversalCommunication>
         </ram:DefinedTradeContact>
         <ram:PostalTradeAddress>
-          <ram:PostcodeCode>86807</ram:PostcodeCode>
-          <ram:LineOne>Bahnhofstraße 27</ram:LineOne>
-          <ram:CityName>Buchloe</ram:CityName>
-          <ram:CountryID>DE</ram:CountryID>
+          <ram:PostcodeCode>$[seller.zip]</ram:PostcodeCode>
+          <ram:LineOne>$[seller.street]</ram:LineOne>
+          <ram:CityName>$[seller.city]</ram:CityName>
+          <ram:CountryID>$[seller.country]</ram:CountryID>
         </ram:PostalTradeAddress>
         <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="FC">127/113/40209</ram:ID>
+          <ram:ID schemeID="FC">$[seller.taxno]</ram:ID>
         </ram:SpecifiedTaxRegistration>
         <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="VA">DE287415963</ram:ID>
+          <ram:ID schemeID="VA">$[seller.vatid]</ram:ID>
         </ram:SpecifiedTaxRegistration>
       </ram:SellerTradeParty>
       <ram:BuyerTradeParty>
-        <ram:ID>339420</ram:ID>
-        <ram:GlobalID schemeID="0088">4304171000002</ram:GlobalID>
-        <ram:Name>Lindner Logistik GmbH</ram:Name>
+        <ram:ID>$[buyer.id]</ram:ID>
+        <ram:GlobalID schemeID="0088">$[buyer.gln]</ram:GlobalID>
+        <ram:Name>$[buyer.name]</ram:Name>
         <ram:DefinedTradeContact>
-          <ram:PersonName>Markus Weber</ram:PersonName>
+          <ram:PersonName>$[buyer.contact]</ram:PersonName>
         </ram:DefinedTradeContact>
         <ram:PostalTradeAddress>
-          <ram:PostcodeCode>40474</ram:PostcodeCode>
-          <ram:LineOne>Kaiserswerther Straße 115</ram:LineOne>
-          <ram:CityName>Düsseldorf</ram:CityName>
-          <ram:CountryID>DE</ram:CountryID>
+          <ram:PostcodeCode>$[buyer.zip]</ram:PostcodeCode>
+          <ram:LineOne>$[buyer.street]</ram:LineOne>
+          <ram:CityName>$[buyer.city]</ram:CityName>
+          <ram:CountryID>$[buyer.country]</ram:CountryID>
         </ram:PostalTradeAddress>
         <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="VA">DE812345679</ram:ID>
+          <ram:ID schemeID="VA">$[buyer.vatid]</ram:ID>
         </ram:SpecifiedTaxRegistration>
       </ram:BuyerTradeParty>
       <ram:AdditionalReferencedDocument>
-        <ram:IssuerAssignedID>KST-7322</ram:IssuerAssignedID>
+        <ram:IssuerAssignedID>KST-$[shipto.costcenter]</ram:IssuerAssignedID>
         <ram:TypeCode>130</ram:TypeCode>
       </ram:AdditionalReferencedDocument>
     </ram:ApplicableHeaderTradeAgreement>
     <ram:ApplicableHeaderTradeDelivery>
       <ram:ShipToTradeParty>
-        <ram:GlobalID schemeID="0088">4304171088093</ram:GlobalID>
-        <ram:Name>Lindner Logistik GmbH, Lager Sarstedt</ram:Name>
+        <ram:GlobalID schemeID="0088">$[shipto.gln]</ram:GlobalID>
+        <ram:Name>$[shipto.name]</ram:Name>
         <ram:DefinedTradeContact>
-          <ram:DepartmentName>7322</ram:DepartmentName>
+          <ram:DepartmentName>$[shipto.costcenter]</ram:DepartmentName>
         </ram:DefinedTradeContact>
         <ram:PostalTradeAddress>
-          <ram:PostcodeCode>31157</ram:PostcodeCode>
-          <ram:LineOne>Hauptstraße 44</ram:LineOne>
-          <ram:CityName>Sarstedt</ram:CityName>
-          <ram:CountryID>DE</ram:CountryID>
+          <ram:PostcodeCode>$[shipto.zip]</ram:PostcodeCode>
+          <ram:LineOne>$[shipto.street]</ram:LineOne>
+          <ram:CityName>$[shipto.city]</ram:CityName>
+          <ram:CountryID>$[shipto.country]</ram:CountryID>
         </ram:PostalTradeAddress>
       </ram:ShipToTradeParty>
       <ram:ActualDeliverySupplyChainEvent>
         <ram:OccurrenceDateTime>
-          <udt:DateTimeString format="102">20260205</udt:DateTimeString>
+          <udt:DateTimeString format="102">$[delivery.date.code]</udt:DateTimeString>
         </ram:OccurrenceDateTime>
       </ram:ActualDeliverySupplyChainEvent>
       <ram:DeliveryNoteReferencedDocument>
-        <ram:IssuerAssignedID>LS-2026-00388</ram:IssuerAssignedID>
+        <ram:IssuerAssignedID>$[delivery.note]</ram:IssuerAssignedID>
       </ram:DeliveryNoteReferencedDocument>
     </ram:ApplicableHeaderTradeDelivery>
     <ram:ApplicableHeaderTradeSettlement>
-      <ram:PaymentReference>RE-2026-00417</ram:PaymentReference>
-      <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
+      <ram:PaymentReference>$[inv.id]</ram:PaymentReference>
+      <ram:InvoiceCurrencyCode>$[curr]</ram:InvoiceCurrencyCode>
       <ram:InvoiceeTradeParty>
-        <ram:ID>339420</ram:ID>
-        <ram:GlobalID schemeID="0088">4304171000002</ram:GlobalID>
-        <ram:Name>Lindner Logistik GmbH</ram:Name>
+        <ram:ID>$[buyer.id]</ram:ID>
+        <ram:GlobalID schemeID="0088">$[buyer.gln]</ram:GlobalID>
+        <ram:Name>$[buyer.name]</ram:Name>
         <ram:PostalTradeAddress>
-          <ram:PostcodeCode>40474</ram:PostcodeCode>
-          <ram:LineOne>Kaiserswerther Straße 115</ram:LineOne>
-          <ram:CityName>Düsseldorf</ram:CityName>
-          <ram:CountryID>DE</ram:CountryID>
+          <ram:PostcodeCode>$[buyer.zip]</ram:PostcodeCode>
+          <ram:LineOne>$[buyer.street]</ram:LineOne>
+          <ram:CityName>$[buyer.city]</ram:CityName>
+          <ram:CountryID>$[buyer.country]</ram:CountryID>
         </ram:PostalTradeAddress>
       </ram:InvoiceeTradeParty>
       <ram:SpecifiedTradeSettlementPaymentMeans>
         <ram:TypeCode>58</ram:TypeCode>
         <ram:Information>SEPA-Überweisung</ram:Information>
         <ram:PayeePartyCreditorFinancialAccount>
-          <ram:IBANID>DE89370400440532013000</ram:IBANID>
-          <ram:AccountName>Hofmann Service GmbH</ram:AccountName>
+          <ram:IBANID>$[seller.iban]</ram:IBANID>
+          <ram:AccountName>$[seller.name]</ram:AccountName>
         </ram:PayeePartyCreditorFinancialAccount>
         <ram:PayeeSpecifiedCreditorFinancialInstitution>
-          <ram:BICID>COBADEFFXXX</ram:BICID>
+          <ram:BICID>$[seller.bic]</ram:BICID>
         </ram:PayeeSpecifiedCreditorFinancialInstitution>
       </ram:SpecifiedTradeSettlementPaymentMeans>
       <ram:ApplicableTradeTax>
-        <ram:CalculatedAmount>76.67</ram:CalculatedAmount>
+        <ram:CalculatedAmount>$[sum.vat]</ram:CalculatedAmount>
         <ram:TypeCode>VAT</ram:TypeCode>
-        <ram:BasisAmount>403.55</ram:BasisAmount>
-        <ram:LineTotalBasisAmount>410.10</ram:LineTotalBasisAmount>
-        <ram:AllowanceChargeBasisAmount>-6.55</ram:AllowanceChargeBasisAmount>
+        <ram:BasisAmount>$[sum.taxbasis]</ram:BasisAmount>
+        <ram:LineTotalBasisAmount>$[sum.lines]</ram:LineTotalBasisAmount>
+        <ram:AllowanceChargeBasisAmount>$[sum.allowancecharge]</ram:AllowanceChargeBasisAmount>
         <ram:CategoryCode>S</ram:CategoryCode>
-        <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
+        <ram:RateApplicablePercent>$[vat.rate]</ram:RateApplicablePercent>
       </ram:ApplicableTradeTax>
       <ram:SpecifiedTradeAllowanceCharge>
         <ram:ChargeIndicator>
           <udt:Indicator>false</udt:Indicator>
         </ram:ChargeIndicator>
-        <ram:BasisAmount>410.10</ram:BasisAmount>
-        <ram:ActualAmount>21.55</ram:ActualAmount>
-        <ram:Reason>Sonderrabatt</ram:Reason>
+        <ram:BasisAmount>$[sum.lines]</ram:BasisAmount>
+        <ram:ActualAmount>$[sum.allowance]</ram:ActualAmount>
+        <ram:Reason>$[allowance.reason]</ram:Reason>
         <ram:CategoryTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
           <ram:CategoryCode>S</ram:CategoryCode>
-          <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
+          <ram:RateApplicablePercent>$[vat.rate]</ram:RateApplicablePercent>
         </ram:CategoryTradeTax>
       </ram:SpecifiedTradeAllowanceCharge>
       <ram:SpecifiedLogisticsServiceCharge>
-        <ram:Description>Frachtkosten</ram:Description>
-        <ram:AppliedAmount>15.00</ram:AppliedAmount>
+        <ram:Description>$[charge.reason]</ram:Description>
+        <ram:AppliedAmount>$[sum.charge]</ram:AppliedAmount>
         <ram:AppliedTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
           <ram:CategoryCode>S</ram:CategoryCode>
-          <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
+          <ram:RateApplicablePercent>$[vat.rate]</ram:RateApplicablePercent>
         </ram:AppliedTradeTax>
       </ram:SpecifiedLogisticsServiceCharge>
       <ram:SpecifiedTradePaymentTerms>
-        <ram:Description>Zahlbar bis 25.02.2026 ohne Abzug; 2 % Skonto bei Zahlung innerhalb 10 Tagen nach Rechnungsdatum</ram:Description>
+        <ram:Description>Zahlbar bis $[due.date] ohne Abzug; $[skonto.percent.text] % Skonto bei Zahlung innerhalb $[skonto.days] Tagen nach Rechnungsdatum</ram:Description>
         <ram:DueDateDateTime>
-          <udt:DateTimeString format="102">20260225</udt:DateTimeString>
+          <udt:DateTimeString format="102">$[due.date.code]</udt:DateTimeString>
         </ram:DueDateDateTime>
         <ram:ApplicableTradePaymentDiscountTerms>
-          <ram:BasisPeriodMeasure unitCode="DAY">10</ram:BasisPeriodMeasure>
-          <ram:CalculationPercent>2.00</ram:CalculationPercent>
+          <ram:BasisPeriodMeasure unitCode="DAY">$[skonto.days]</ram:BasisPeriodMeasure>
+          <ram:CalculationPercent>$[skonto.percent]</ram:CalculationPercent>
         </ram:ApplicableTradePaymentDiscountTerms>
       </ram:SpecifiedTradePaymentTerms>
       <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
-        <ram:LineTotalAmount>410.10</ram:LineTotalAmount>
-        <ram:ChargeTotalAmount>15.00</ram:ChargeTotalAmount>
-        <ram:AllowanceTotalAmount>21.55</ram:AllowanceTotalAmount>
-        <ram:TaxBasisTotalAmount>403.55</ram:TaxBasisTotalAmount>
-        <ram:TaxTotalAmount currencyID="EUR">76.67</ram:TaxTotalAmount>
-        <ram:GrandTotalAmount>480.22</ram:GrandTotalAmount>
+        <ram:LineTotalAmount>$[sum.lines]</ram:LineTotalAmount>
+        <ram:ChargeTotalAmount>$[sum.charge]</ram:ChargeTotalAmount>
+        <ram:AllowanceTotalAmount>$[sum.allowance]</ram:AllowanceTotalAmount>
+        <ram:TaxBasisTotalAmount>$[sum.taxbasis]</ram:TaxBasisTotalAmount>
+        <ram:TaxTotalAmount currencyID="$[curr]">$[sum.vat]</ram:TaxTotalAmount>
+        <ram:GrandTotalAmount>$[sum.grand]</ram:GrandTotalAmount>
         <ram:TotalPrepaidAmount>0.00</ram:TotalPrepaidAmount>
-        <ram:DuePayableAmount>480.22</ram:DuePayableAmount>
+        <ram:DuePayableAmount>$[sum.grand]</ram:DuePayableAmount>
       </ram:SpecifiedTradeSettlementHeaderMonetarySummation>
     </ram:ApplicableHeaderTradeSettlement>
   </rsm:SupplyChainTradeTransaction>
