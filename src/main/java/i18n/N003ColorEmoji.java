@@ -37,7 +37,7 @@ public class N003ColorEmoji {
 				+ "<p>Weather: ☀️ ⛅ 🌧️ ❄️</p>"
 				+ "<p>Skin tones: 👋 👋🏽 👋🏿</p>"
 				+ "<p>A family (one ZWJ sequence): 👩‍👩‍👧</p>"
-				+ "<p>Flags: 🇩🇪 🇫🇷 🇺🇦</p>"
+				+ "<p>Flags: 🇩🇪 🇫🇷</p>"
 				+ "<p>Status: ✅ done ❌ failed ⚠️ warning</p>"
 				+ "</body></html>";
 		pd4ml.readHTML(new ByteArrayInputStream(html.getBytes(StandardCharsets.UTF_8)));
