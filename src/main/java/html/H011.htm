@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Annual report</title>
+<style>
+  @page {
+    size: A4;
+    margin: 25mm 20mm;
+    @top-left     { content: "Annual report 2026"; font-size: 9pt; color: #667; }
+    @top-right    { content: "ACME Ltd."; font-size: 9pt; color: #667; }
+    @bottom-center { content: "Page " counter(page) " of " counter(pages); font-size: 9pt; }
+  }
+  /* the title page: no header, no page number */
+  @page :first {
+    @top-left { content: none; }
+    @top-right { content: none; }
+    @bottom-center { content: none; }
+  }
+  /* a named page for wide content */
+  @page wide {
+    size: A4 landscape;
+    @bottom-center { content: "Appendix - page " counter(page); font-size: 9pt; }
+  }
+  body { font-family: serif; font-size: 11pt; }
+  .title { text-align: center; padding-top: 80mm; }
+  .title h1 { font-size: 32pt; margin: 0; }
+  h2 { break-before: page; }
+  .appendix { page: wide; }
+  table { border-collapse: collapse; width: 100%; font-size: 9pt; }
+  td, th { border: 1px solid #889; padding: 3px 5px; text-align: right; }
+</style>
+</head>
+<body>
+<div class="title">
+  <h1>Annual report 2026</h1>
+  <p>ACME Ltd.</p>
+</div>
+
+<h2>1. Overview</h2>
+<p>Every page after the first carries the header and footer of the <code>@page</code> rule's margin boxes.
+The total page count comes from <code>counter(pages)</code>.</p>
+<p>The appendix below uses the named page <code>wide</code>: it starts on a new landscape page by itself.</p>
+
+<h2>2. Results</h2>
+<p>Revenue grew in every region.</p>
+
+<div class="appendix">
+  <h2>Appendix: monthly figures</h2>
+  <table>
+    <tr><th>Region</th><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th>
+        <th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th></tr>
+    <tr><th>North</th><td>120</td><td>131</td><td>128</td><td>140</td><td>152</td><td>149</td>
+        <td>160</td><td>158</td><td>171</td><td>169</td><td>180</td><td>192</td></tr>
+    <tr><th>South</th><td>98</td><td>101</td><td>110</td><td>112</td><td>118</td><td>121</td>
+        <td>125</td><td>130</td><td>128</td><td>135</td><td>139</td><td>144</td></tr>
+  </table>
+</div>
+</body>
+</html>

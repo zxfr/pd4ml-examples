@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Sales dashboard</title>
+<style>
+  body { font-family: sans-serif; margin: 0; color: #223; }
+  .dashboard {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "head head head"
+      "nav  main side"
+      "foot foot foot";
+    gap: 10px;
+  }
+  header { grid-area: head; background: #1d3557; color: white; padding: 12px; }
+  nav    { grid-area: nav;  background: #e9eef5; padding: 12px; }
+  main   { grid-area: main; }
+  aside  { grid-area: side; background: #fdf3e1; padding: 12px; }
+  footer { grid-area: foot; border-top: 1px solid #aab; padding: 6px 12px; font-size: 12px; }
+
+  .kpis { display: flex; gap: 10px; flex-wrap: wrap; }
+  .kpi  { flex: 1 1 120px; padding: 10px; border-radius: 6px; background: #f1f6fb; text-align: center; }
+  .kpi b { display: block; font-size: 24px; }
+
+  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 10px; }
+  .gallery div { height: 50px; background: #a8dadc; display: flex; align-items: center; justify-content: center; }
+  .gallery .wide { grid-column: span 2; background: #457b9d; color: white; }
+</style>
+</head>
+<body>
+<div class="dashboard">
+  <header><h1 style="margin: 0">Sales dashboard</h1></header>
+  <nav>Regions<ul><li>North</li><li>South</li><li>East</li><li>West</li></ul></nav>
+  <main>
+    <div class="kpis">
+      <div class="kpi"><b>1 245</b>orders</div>
+      <div class="kpi"><b>&euro;86k</b>revenue</div>
+      <div class="kpi"><b>4.7</b>rating</div>
+    </div>
+    <div class="gallery">
+      <div class="wide">grid-column: span 2</div><div>3</div>
+      <div>4</div><div>5</div><div>6</div>
+    </div>
+  </main>
+  <aside>Grid areas: header, nav, main, aside and footer placed by <code>grid-template-areas</code>.</aside>
+  <footer>Laid out by the PD4ML v42 engine</footer>
+</div>
+</body>
+</html>

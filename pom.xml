@@ -80,6 +80,21 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+					<!-- TEMPORARY: these examples use the PD4ML v4.2.0 API, which is not in the Maven
+					     repository yet. Delete the excludes once 4.2.0 is published, so they are
+					     compiled and RunAllExamples (which finds the examples on the class path) runs them. -->
+					<excludes>
+						<exclude>basics/E011SelectLayoutEngine.java</exclude>
+						<exclude>basics/E012WriteDocxAndRtf.java</exclude>
+						<exclude>html/H010CssGridAndFlexbox.java</exclude>
+						<exclude>html/H011PageRulesAndMarginBoxes.java</exclude>
+						<exclude>html/H012GradientBackgrounds.java</exclude>
+						<exclude>i18n/N003ColorEmoji.java</exclude>
+						<exclude>advanced/A009ModifyDocumentWithDom.java</exclude>
+						<exclude>advanced/A010ReadLayout.java</exclude>
+						<exclude>advanced/A011RestrictResourceLocations.java</exclude>
+						<exclude>com/pd4ml/pdf/optimizer/example/usecases/Ex08_LinearizeForFastWebView.java</exclude>
+					</excludes>
 				</configuration>
 			</plugin>
 		</plugins>

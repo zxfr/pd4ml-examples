@@ -22,6 +22,8 @@ Requirements
   * v4.1.x line: release **4.1.1**, snapshot **4.1.2-SNAPSHOT**
 * The examples in the `standards` package and the PDF tools examples in `com.pd4ml.pdf.*` use APIs
   available in the **v4.1.x** line only.
+* The examples marked *4.2* below use APIs of **PD4ML v4.2.0** (the v42 layout engine, the DOM and layout API,
+  `addAllowedResourceLocation()`, linearized output) and compile only against it.
 
 Without a license PD4ML runs in evaluation mode. A license file `pd4ml.lic` is looked up in the current working
 directory and then in the classpath; see https://pd4ml.com/docs/ for licensing details.
@@ -34,15 +36,15 @@ the PDF it produces.
 
 | Package | Examples |
 |---|---|
-| `basics` | E001 getting started, E002 page format, E003/E004 page headers and footers (API and inline tags), E005/E006 page background, E007/E008 watermarks, E009 password protection and document permissions, E010 `injectHtml()` |
-| `html` | H001 HTML file conversion with a custom TTF font, H002 table of contents, H003 bookmarks, H004 page breaks, H005 file attachments, H006 footnotes, H007 page number info, H008/H009 multicolumn layout (two-column newsletter, three-column landscape glossary) |
-| `i18n` | N001/N002 TTF fonts for international text |
-| `advanced` | A001 print dialog on open, A002 silent print, A003 HTML from the classpath, A004 progress listener, A005 custom resource loaders (incl. image resampling and JPEG conversion), A006 placeholder substitution, A007 rendering status info, A008 custom tag renderer |
+| `basics` | E001 getting started, E002 page format, E003/E004 page headers and footers (API and inline tags), E005/E006 page background, E007/E008 watermarks, E009 password protection and document permissions, E010 `injectHtml()`, E011 selecting the v42 layout engine and its settings *4.2*, E012 PDF, DOCX and RTF from one parse *4.2* |
+| `html` | H001 HTML file conversion with a custom TTF font, H002 table of contents, H003 bookmarks, H004 page breaks, H005 file attachments, H006 footnotes, H007 page number info, H008/H009 multicolumn layout (two-column newsletter, three-column landscape glossary), H010 CSS Grid and Flexbox *4.2*, H011 CSS `@page` rules: named pages and margin boxes *4.2*, H012 gradient backgrounds *4.2* |
+| `i18n` | N001/N002 TTF fonts for international text, N003 color emoji *4.2* (with the `pd4ml-emoji` add-on on the class path, or a color emoji font given with `useTTF()`) |
+| `advanced` | A001 print dialog on open, A002 silent print, A003 HTML from the classpath, A004 progress listener, A005 custom resource loaders (incl. image resampling and JPEG conversion), A006 placeholder substitution, A007 rendering status info, A008 custom tag renderer, A009 DOM API: changing the parsed document before the output *4.2*, A010 layout API: page count, element positions, computed styles *4.2*, A011 restricting resource locations for untrusted HTML *4.2* |
 | `pdftools` | P001 convert and append pages of an existing PDF, P002 merge two PDFs, P003 merge and protect with a password, P004 update PDF meta info, P005 underlay/overlay |
 | `standards` | Z001 ZUGFeRD / Factur-X invoice (PDF/A-3 with embedded invoice XML) |
 | `com.pd4ml.pdf.cos.example.usecases` | low-level PDF object model (COS): parsing, path queries, listing objects and pages, incremental updates, encrypted PDFs, stream filters, building a PDF from scratch, error recovery |
 | `com.pd4ml.pdf.merge.example.usecases` | `PdfMerger`: merging, page range grammar, filtering and reordering, shared resource deduplication, encrypted sources, encrypted output, tagged PDF reconciliation, error handling |
-| `com.pd4ml.pdf.optimizer.example.usecases` | `PdfOptimizer`: cleanup, deduplication of shared and duplicate content, encrypted input and output, error handling |
+| `com.pd4ml.pdf.optimizer.example.usecases` | `PdfOptimizer`: cleanup, deduplication of shared and duplicate content, encrypted input and output, error handling, linearized (Fast Web View) output *4.2* |
 | `com.pd4ml.pdf.sign.example` | `PdfSigner`: invisible and visible signatures (text, image), digest algorithms, RFC 3161 timestamps, DocMDP certification, co-signing, PKCS#11 HSM and cloud KMS signing, LTV, signature field inspection |
 | `com.pd4ml.pdf.xfdf.example.usecases` | XFDF export and import of annotations and form field values, filtering, encrypted sources, post-import optimization |
 
