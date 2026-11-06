@@ -8,9 +8,7 @@ import java.util.List;
 
 public class RunAllExamples {
 	
-	// The examples of each package are found on the class path. The PD4ML v4.2.0 examples
-	// (E011, E012, H010-H012, N003, A009-A011) are TEMPORARILY excluded from compilation in
-	// pom.xml until 4.2.0 is published, so they are not run here either.
+	// The examples of each package are found on the class path.
 	private static String[] packages = {
 			"basics",
 			"html",

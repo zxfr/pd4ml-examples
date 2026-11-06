@@ -18,12 +18,13 @@ Requirements
 * Java 8 or newer
 * PD4ML v4 library. The `pom.xml` takes the newest available version from the PD4ML Maven repository
   (version range `[4.0.22,)`, snapshots enabled). Currently published:
-  * v4.0.x line: releases up to **4.0.23fx2**, snapshot **4.0.24-SNAPSHOT**
-  * v4.1.x line: release **4.1.1**, snapshot **4.1.2-SNAPSHOT**
+  * v4.0.x line: releases up to **4.0.24**
+  * v4.1.x line: release **4.1.2**
+  * v4.2.x line: snapshot **4.2.0-SNAPSHOT**, which the version range resolves to
 * The examples in the `standards` package and the PDF tools examples in `com.pd4ml.pdf.*` use APIs
-  available in the **v4.1.x** line only.
+  available from the **v4.1.x** line on.
 * The examples marked *4.2* below use APIs of **PD4ML v4.2.0** (the v42 layout engine, the DOM and layout API,
-  `addAllowedResourceLocation()`, linearized output) and compile only against it.
+  `addAllowedResourceLocation()`, linearized output) and need it to compile.
 
 Without a license PD4ML runs in evaluation mode. A license file `pd4ml.lic` is looked up in the current working
 directory and then in the classpath; see https://pd4ml.com/docs/ for licensing details.
